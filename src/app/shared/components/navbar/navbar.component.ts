@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component,Input,Output,EventEmitter } from '@angular/core';
+import { NavList } from 'src/app/core/Models/CommonModels';
 
 @Component({
   selector: 'app-navbar',
@@ -6,5 +7,24 @@ import { Component } from '@angular/core';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
+  @Input() navList!:NavList[];
+  @Input() userLogged:boolean = false;
+  @Output() logInButton : EventEmitter<void> = new EventEmitter();
+  @Output() registerButton : EventEmitter<void> = new EventEmitter();
+  sideBar:boolean = false;
+
+
+  setSideBar():void{ 
+    this.sideBar = !this.sideBar;
+  };
+
+  clickLogIn():void{
+    this.logInButton.emit();
+  };
+
+  clickRegister():void{
+    this.logInButton.emit();
+  }
+
 
 }
