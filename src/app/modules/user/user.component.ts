@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NavList } from 'src/app/core/Models/CommonModels';
 
 @Component({
   selector: 'app-user',
@@ -6,5 +7,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent {
-
+  navList:NavList[] = [
+    {
+      name:"Home",
+      path:"/user"
+    },
+    {
+      name:"Departments",
+      path:'#'
+    },
+    {
+      name:"Doctors",
+      path:"#"
+    },
+    {
+      name:"About Us",
+      path:"#"
+    }
+  ]
 }
