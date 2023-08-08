@@ -7,6 +7,6 @@ export interface UserRegister extends UserSignIn{
     fullName:string;
     phone:string;
     dateOfBirth:string;
-    confirmPass:string;
+    confirmPass?:string;
     address:string;
 }

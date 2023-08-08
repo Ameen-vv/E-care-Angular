@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators,AbstractControl } from '@angular/forms';
 import { UserRegister, UserSignIn } from '../../core/models/userModels';
 import {HotToastService} from '@ngneat/hot-toast'
+import { UserService } from '../../core/services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-registration',
@@ -14,7 +16,7 @@ export class UserRegistrationComponent {
   authType:'signUp' | 'otp' = 'signUp';
   private user!:UserRegister;
 
-  constructor(private formBuilder : FormBuilder,private toast : HotToastService){
+  constructor(private formBuilder : FormBuilder,private toast : HotToastService,private userService : UserService,private router : Router){
     this.authForm = formBuilder.group({
       name:['',Validators.required],
       email:['',Validators.compose([Validators.required, Validators.email])],
@@ -35,17 +37,38 @@ export class UserRegistrationComponent {
     return { invalidPhone: true };
   }
 
-  signUp(user:UserRegister){
+  getOtp(user:UserRegister){
     if(user.confirmPass === user.password){
+      delete user.confirmPass;
       this.user = user;
-      this.authType = 'otp';
+      this.loader = true;
+      this.userService.getOtp(user.email).subscribe(
+        (response)=>{
+          response.ok ? (this.authType = 'otp') :
+          this.toast.error(response.message);
+          this.loader = false;
+        },
+        ()=>{
+          this.loader = false;
+        }
+        )
     }else{
       this.toast.error("passwords does'nt match");
     };
   }
 
-  verifyOtp(otp:string){
-    console.log(otp);
+  verifyOtpAndSignUp(otp:string){
+    this.loader = true;
+    this.userService.verifyOtpAndSignUp(this.user,otp).subscribe(
+      (response) => {
+        response.ok ? this.router.navigate(['/user/signIn']) :
+        this.toast.error(response.message);
+        this.loader = false;
+      },
+      ()=>{
+        this.loader = false;
+      },
+    )
   };
 
   

@@ -8,6 +8,8 @@ import { UserAuthFormComponent } from './shared/components/user-auth-form/user-a
 import { UserRegistrationComponent } from './pages/user-registration/user-registration.component';
 import {FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { HotToastModule } from '@ngneat/hot-toast';
+import { HttpClientModule } from '@angular/common/http';
+import { UserService } from './core/services/user.service';
 
 
 
@@ -25,7 +27,11 @@ import { HotToastModule } from '@ngneat/hot-toast';
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
-    HotToastModule.forRoot()
+    HotToastModule.forRoot(),
+    HttpClientModule
+  ],
+  providers:[
+    UserService
   ]
 })
 export class UserModule { }
