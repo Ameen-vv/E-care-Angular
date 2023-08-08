@@ -7,6 +7,9 @@ import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { UserAuthFormComponent } from './shared/components/user-auth-form/user-auth-form.component';
 import { UserRegistrationComponent } from './pages/user-registration/user-registration.component';
 import { UserService } from './core/services/user.service';
+import { HeroSectionComponent } from './shared/components/hero-section/hero-section.component';
+import { HomepageComponent } from './pages/homepage/homepage.component';
+import { DepSectionHomeComponent } from './shared/components/dep-section-home/dep-section-home.component';
 
 
 
@@ -17,6 +20,9 @@ import { UserService } from './core/services/user.service';
     SignInComponent,
     UserAuthFormComponent,
     UserRegistrationComponent,
+    HeroSectionComponent,
+    HomepageComponent,
+    DepSectionHomeComponent,
   ],
   imports: [
     CommonModule,
