@@ -12,11 +12,11 @@ import { LoaderComponent } from './components/loader/loader.component'
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
   ],
   exports:[
     NavbarComponent,
-    LoaderComponent
+    LoaderComponent,
   ]
 })
 export class SharedModule { }

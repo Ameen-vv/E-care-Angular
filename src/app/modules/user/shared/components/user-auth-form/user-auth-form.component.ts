@@ -1,6 +1,6 @@
 import { Component,Input,Output,EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserRegister } from '../../../core/models/userModels';
+import { UserRegister, UserSignIn } from '../../../core/models/userModels';
 
 
 @Component({
@@ -14,12 +14,11 @@ export class UserAuthFormComponent {
   @Input() title:string = '';
   @Input() formTemplate!:FormGroup;
   @Output() formSubmit = new EventEmitter();
+  @Output() verifyOtp = new EventEmitter<string>();
+  otp!:string;
 
-  
-  
 
   onSubmit(): void {
-    console.log('asd')
     if (this.formType === 'signUp') {
       if (this.formTemplate.valid) {
         let user: UserRegister = {
@@ -42,4 +41,7 @@ export class UserAuthFormComponent {
       }
     }
   }
+  onOtpSubmit():void{
+    this.verifyOtp.emit(this.otp);
+  };
 }

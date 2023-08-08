@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators,AbstractControl } from '@angular/forms';
-import { UserRegister } from '../../core/models/userModels';
+import { UserRegister, UserSignIn } from '../../core/models/userModels';
+import {HotToastService} from '@ngneat/hot-toast'
 
 @Component({
   selector: 'app-user-registration',
@@ -10,8 +11,10 @@ import { UserRegister } from '../../core/models/userModels';
 export class UserRegistrationComponent {
   authForm!:FormGroup;
   loader:boolean = false;
+  authType:'signUp' | 'otp' = 'signUp';
+  private user!:UserRegister;
 
-  constructor(private formBuilder : FormBuilder){
+  constructor(private formBuilder : FormBuilder,private toast : HotToastService){
     this.authForm = formBuilder.group({
       name:['',Validators.required],
       email:['',Validators.compose([Validators.required, Validators.email])],
@@ -26,18 +29,24 @@ export class UserRegistrationComponent {
   phoneValidator(control: AbstractControl): { [key: string]: any } | null {
     const validPhoneNumber = /^\d{10}$/; 
     const value = control.value;
-
     if (!value || validPhoneNumber.test(value)) {
       return null; 
     }
-
     return { invalidPhone: true };
   }
 
   signUp(user:UserRegister){
-    console.log('ad')
-    console.log(user);
+    if(user.confirmPass === user.password){
+      this.user = user;
+      this.authType = 'otp';
+    }else{
+      this.toast.error("passwords does'nt match");
+    };
   }
+
+  verifyOtp(otp:string){
+    console.log(otp);
+  };
 
   
 

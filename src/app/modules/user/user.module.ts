@@ -7,6 +7,7 @@ import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { UserAuthFormComponent } from './shared/components/user-auth-form/user-auth-form.component';
 import { UserRegistrationComponent } from './pages/user-registration/user-registration.component';
 import {FormsModule , ReactiveFormsModule} from '@angular/forms';
+import { HotToastModule } from '@ngneat/hot-toast';
 
 
 
@@ -23,7 +24,8 @@ import {FormsModule , ReactiveFormsModule} from '@angular/forms';
     UserRoutingModule,
     SharedModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HotToastModule.forRoot()
   ]
 })
 export class UserModule { }
