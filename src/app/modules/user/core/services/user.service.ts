@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { getOtpUrl, verifyOtpUrl } from '../../shared/constants/urls';
+import { getOtpUrl, resendOtpUrl, verifyOtpUrl } from '../../shared/constants/urls';
 import { UserRegister } from '../models/userModels';
 
 @Injectable({
@@ -17,6 +17,11 @@ export class UserService {
 
   verifyOtpAndSignUp(user:UserRegister,otp:string):Observable<{ok:boolean,message:string}>{
     return this.http.post<{ok:boolean,message:string}>(verifyOtpUrl,{userData:user,otp})
-  }
+  };
   
+  resendOtp(email:string):Observable<{ok:boolean}>{
+    return this.http.post<{ok:boolean}>(resendOtpUrl,{email});
+  };
+  
+
 }

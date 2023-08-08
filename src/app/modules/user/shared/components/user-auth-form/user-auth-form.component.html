@@ -1,4 +1,4 @@
-<div class="min-h-screen flex  justify-center bg-white pt-12">
+<div class="min-h-screen flex  justify-center bg-white pt-2">
     <div class="max-w-md w-full p-6  rounded-lg shadow-xl md:mt-12 h-1/2 bg-white">
         <h2 class="mb-6 text-center text-3xl font-bold text-textBlue font-dance">
            {{title}}
@@ -102,6 +102,10 @@
                     </span>
                     <span *ngIf="!loader">Verify Otp</span>
                 </button>
+            </div>
+            <div class="flex w-full justify-center mt-3">
+                <p class="text-textBlue">resend otp in <a *ngIf="otpTimer > 0">{{otpTimer}}</a></p>
+                <a class="ms-2 text-secColor font-medium cursor-pointer" *ngIf="otpTimer <= 0" (click)="onOtpResend()" >Resend</a>
             </div>
         </ng-container>
     </div>
