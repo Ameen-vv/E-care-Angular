@@ -1,6 +1,6 @@
 import { Component,Input,Output,EventEmitter,OnInit,OnDestroy,OnChanges,SimpleChanges } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserRegister, UserSignIn } from '../../../core/models/userModels';
+import {  FormGroup } from '@angular/forms';
+import { UserRegister } from '../../../core/models/userModels';
 
 
 @Component({
@@ -8,7 +8,7 @@ import { UserRegister, UserSignIn } from '../../../core/models/userModels';
   templateUrl: './user-auth-form.component.html',
   styleUrls: ['./user-auth-form.component.scss']
 })
-export class UserAuthFormComponent implements OnInit,OnDestroy {
+export class UserAuthFormComponent implements OnDestroy,OnChanges {
 
   @Input() formType!: 'signUp' | 'signIn' | 'otp';
   @Input() loader:boolean = false;
@@ -21,36 +21,23 @@ export class UserAuthFormComponent implements OnInit,OnDestroy {
   otpTimer:number = 30;
   interval!:any;
 
-  ngOnInit(): void {
-    if (this.formType === 'otp') {
-      this.interval = setInterval(()=>this.otpTimerSet(),1000);
-    }
-  };
-
+  
   ngOnChanges(changes: SimpleChanges): void {
-    if ('formType' in changes) {
+    if ('formType' in changes ) {
       if (this.formType === 'otp') {
-        this.interval = setInterval(()=>this.otpTimerSet(),1000);
+        this.startOtpTimer();
       }else {
-        this.interval && clearInterval(this.interval);
+        this.stopOtpTimer();
       }
     }
-  }
+  };
+
 
   ngOnDestroy(): void {
-    this.interval && clearInterval(this.interval);  
+    this.startOtpTimer();  
   };
 
-  otpTimerSet(){
-    console.log('1');
-    if (this.otpTimer <= 0) {
-      clearInterval(this.interval);
-    }else{
-      this.otpTimer--;
-    }
-  };
-
-
+ 
   onSubmit(): void {
     if (this.formType === 'signUp') {
       if (this.formTemplate.valid) {
@@ -74,11 +61,36 @@ export class UserAuthFormComponent implements OnInit,OnDestroy {
       }
     }
   }
+
+
   onOtpSubmit():void{
+    this.otpTimer = 30;
     this.verifyOtp.emit(this.otp);
   };
 
-  onOtpResend(){
+
+  onOtpResend():void{
+    this.startOtpTimer()
     this.resendOtp.emit();
+  };
+
+
+  otpTimerSet():void{
+    if (this.otpTimer <= 0) {
+      clearInterval(this.interval);
+    }else{
+      this.otpTimer--;
+    }
+  };
+
+
+  startOtpTimer(): void {
+    this.otpTimer = 30;
+    this.interval = setInterval(() => this.otpTimerSet(), 1000);
+  };
+
+
+  stopOtpTimer(): void {
+    this.interval && clearInterval(this.interval);
   };
 }
