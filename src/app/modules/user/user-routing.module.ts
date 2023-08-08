@@ -4,6 +4,7 @@ import { UserComponent } from './user.component';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { UserRegistrationComponent } from './pages/user-registration/user-registration.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
+import { ProfileDetailsComponent } from './shared/components/profile-details/profile-details.component';
 
 
 const routes:Routes = [{
@@ -21,6 +22,10 @@ const routes:Routes = [{
     {
       path:'home',
       component:HomepageComponent
+    },
+    {
+      path:'profile',
+      component:ProfileDetailsComponent
     }
   ]
 }];

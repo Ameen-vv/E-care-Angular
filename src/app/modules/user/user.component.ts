@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NavList } from 'src/app/core/Models/CommonModels';
 
 @Component({
@@ -6,7 +7,7 @@ import { NavList } from 'src/app/core/Models/CommonModels';
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss']
 })
-export class UserComponent {
+export class UserComponent  {
   navList:NavList[] = [
     {
       name:"Home",
@@ -25,4 +26,8 @@ export class UserComponent {
       path:"#"
     }
   ]
+  constructor(private router : Router){
+    router.navigate(['/user/home'])
+  }
+  
 }

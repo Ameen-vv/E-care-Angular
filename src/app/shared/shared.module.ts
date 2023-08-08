@@ -6,19 +6,21 @@ import { LoaderComponent } from './components/loader/loader.component'
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HotToastModule } from '@ngneat/hot-toast';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 @NgModule({
   declarations: [
     NavbarComponent,
-    LoaderComponent
+    LoaderComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    HotToastModule.forRoot()
+    HotToastModule.forRoot(),
   ],
   exports:[
     NavbarComponent,
@@ -26,7 +28,8 @@ import { HotToastModule } from '@ngneat/hot-toast';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    HotToastModule
+    HotToastModule,
+    FooterComponent
   ]
 })
 export class SharedModule { }
