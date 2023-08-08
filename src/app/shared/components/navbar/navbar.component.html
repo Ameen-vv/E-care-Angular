@@ -1,4 +1,4 @@
-<nav class="flex items-center justify-between flex-wrap bg-white p-6 shadow">
+<nav class="flex items-center justify-between flex-wrap bg-white p-6 shadow-md">
   <div class="flex items-center flex-shrink-0 text-white mr-6 w-1/5 justify-center">
     <img src="assets/logo.png" class="h-10 w-20" alt="asda">
   </div>
@@ -9,13 +9,13 @@
   </div>
   <div class=" hidden flex-grow lg:flex lg:items-center w-2/5 xl:w-3/5 items-center justify-center lg:text-center text-textBlue">
     <div class="text-sm lg:flex-grow">
-      <a  class="block mt-4 lg:inline-block lg:mt-0 text-sm mr-4" *ngFor="let item of navList" [routerLink]="item.path"   >
+      <a  class="block mt-4 lg:inline-block lg:mt-0 text-sm mr-4 hover:text-secColor" *ngFor="let item of navList" [routerLink]="item.path"   >
         {{item.name}}
       </a>
     </div>
     <div class="w-2/5 xl:w-1/5 flex " *ngIf="!userLogged">
-      <button class="ms-auto p-2 px-6 text-white text-sm bg-mainColor rounded" (click)="clickLogIn()">Log In</button>
-      <button class="ms-2 w p-2 px-6 text-white text-sm bg-mainColor rounded" (click)="clickRegister()">Register</button>
+      <button class="ms-auto p-2 px-6 text-white text-sm bg-mainColor rounded hover:bg-secColor" (click)="clickLogIn()">Log In</button>
+      <button class="ms-2 w p-2 px-6 text-white text-sm bg-mainColor rounded hover:bg-secColor" (click)="clickRegister()">Register</button>
     </div>
   </div>
   <div class="block w-full flex-grow lg:hidden  items-center justify-center  text-textBlue" *ngIf="sideBar">
