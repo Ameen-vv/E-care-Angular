@@ -1,16 +1,46 @@
-import { Component } from '@angular/core';
+import { Component, OnInit,OnDestroy } from '@angular/core';
 import { DoctorModel } from 'src/app/core/Models/CommonModels';
+import { UserService } from '../../core/services/user.service';
+import { Subscription } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-doctor-list',
   templateUrl: './doctor-list.component.html',
-  styleUrls: ['./doctor-list.component.scss']
+  styleUrls: ['./doctor-list.component.scss'],
 })
-export class DoctorListComponent {
-    doctors:DoctorModel[]=[];
-    loader:boolean = false;
+export class DoctorListComponent implements OnInit,OnDestroy {
+  doctors: DoctorModel[] = [];
+  loader: boolean = false;
+  getDocSub!: Subscription;
+  paramsSub!:Subscription;
+  depId: string = '';
 
-    onSearch(text:string){
-      console.log(text)
-    }
+  constructor(private userService: UserService, private route: ActivatedRoute) {
+    this.paramsSub =  route.queryParams.subscribe((param) => {
+      param['depId'] && (this.depId = param['depId']);
+    });
+  }
+
+  ngOnInit(): void {
+    this.getDoctors('');
+  }
+
+  ngOnDestroy(): void {
+      this.getDocSub.unsubscribe();
+      this.paramsSub.unsubscribe();
+  }
+
+  getDoctors(searchText: string) {
+    this.getDocSub = this.userService
+      .getDoctors(this.depId, searchText)
+      .subscribe((response) => {
+        console.log(response);
+        this.doctors = response.data;
+      });
+  }
+
+  onSearch(text: string) {
+   this.getDoctors(text);
+  }
 }

@@ -1,4 +1,6 @@
 import { Component,Input } from '@angular/core';
+import { Router } from '@angular/router';
+import { DepModel } from 'src/app/core/Models/CommonModels';
 
 @Component({
   selector: 'app-department-card',
@@ -6,5 +8,11 @@ import { Component,Input } from '@angular/core';
   styleUrls: ['./department-card.component.scss']
 })
 export class DepartmentCardComponent {
-  @Input() department !: any  ;
+  @Input() department !: DepModel  ;
+
+  constructor(private router : Router){}
+
+  getDr(id:string){
+    this.router.navigate(['/user/doctors'],{queryParams:{depId:id}});
+  }
 }

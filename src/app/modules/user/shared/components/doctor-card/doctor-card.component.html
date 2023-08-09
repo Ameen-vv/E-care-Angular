@@ -5,7 +5,7 @@
           <img
             alt="Placeholder"
             class="block h-48 w-48 rounded-full object-cover"
-            src="https://conferenceoeh.com/wp-content/uploads/profile-pic-dummy.png"
+            [src]="doctor.profilePic ?? 'https://conferenceoeh.com/wp-content/uploads/profile-pic-dummy.png'"
           />
         </a>
       </div>
@@ -17,7 +17,7 @@
       </div>
   
       <div class="flex items-center justify-center text-sm text-gray-500 text-center leading-tight p-2 md:p-4">
-        <p>{{ doctor.departmentId.name }} | {{ doctor.experience }}yrs</p>
+        <p>{{ doctor.department.name }} | {{ doctor.experience }}yrs</p>
       </div>
       <div class="flex items-center justify-start ms-5 text-sm text-gray-500 text-center leading-tight p-2 md:p-4">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">

@@ -38,7 +38,7 @@ export interface DoctorModel{
     timings:DocTimings[];
     verification:"success" | "pending" | "rejected";
     block:boolean;
-    departmentId:DepModel;
+    department:DepModel;
     licenseUrl:string;
     bio:string;
     experience:number;

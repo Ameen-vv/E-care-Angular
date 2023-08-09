@@ -8,7 +8,7 @@
             <app-search-bar (searchChange)="onSearch($event)" ></app-search-bar>
         </div>
         <div class="w-full text-center mt-7" *ngIf="doctors.length === 0">
-            <h1  class="text-2xl font-medium text-textBlue">no results</h1>
+            <h1  class="text-2xl font-medium text-textBlue">no doctors available</h1>
           </div>
         <div *ngIf="loader" class="w-full h-[70vh] flex justify-center items-center">
             <app-loader [size]="50" ></app-loader>
@@ -16,7 +16,7 @@
         <ng-container *ngIf="!loader">
             <ng-container *ngFor="let doctor of doctors; let index = index" >
                 <div class="my-1 px-1 w-full md:w-1/2  lg:w-1/3 xl:w-1/4 lg:my-4 lg:px-4 cursor-pointer hover:scale-105 ease-in-out duration-200 mb-3">
-                    <app-doctor-card></app-doctor-card>
+                    <app-doctor-card [doctor]="doctor"></app-doctor-card>
                 </div>
             </ng-container>
         </ng-container>

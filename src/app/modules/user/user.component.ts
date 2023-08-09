@@ -20,7 +20,7 @@ export class UserComponent implements OnInit  {
     },
     {
       name:"Doctors",
-      path:"#"
+      path:"/user/doctors"
     },
     {
       name:"About Us",
@@ -31,7 +31,6 @@ export class UserComponent implements OnInit  {
   }
 
   userCheck():boolean{
-    console.log(this.userService.checkUserToken())
     return this.userService.checkUserToken();
   }
 
