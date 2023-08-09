@@ -2,12 +2,14 @@ import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import {
+  getAllDepUrl,
   getOtpUrl,
   resendOtpUrl,
   userSignInUrl,
   verifyOtpUrl,
 } from '../../shared/constants/urls';
 import { UserRegister, UserSignIn } from '../models/userModels';
+import { DepModel } from 'src/app/core/Models/CommonModels';
 
 @Injectable({
   providedIn: 'root',
@@ -37,5 +39,9 @@ export class UserService {
 
   userSignIn(user:UserSignIn):Observable<{ok:boolean,message:string,token?:string}>{
     return this.http.post<{ok:boolean,message:string,token?:string}>(userSignInUrl,user);
-  }  
+  }
+  
+  getAllDepartments(searchText:string):Observable<{data:DepModel[],count:number}>{
+    return this.http.get<{data:DepModel[],count:number}>(`${getAllDepUrl}?search=${searchText}`);
+  }
 }

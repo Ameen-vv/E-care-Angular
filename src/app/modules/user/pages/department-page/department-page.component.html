@@ -1,18 +1,22 @@
-<div class="w-full flex  justify-center bg-white">
-    <div class="container my-12 mx-auto px-4 md:px-12 lg:w-4/5 sm:w-full">
+<div class="w-full flex  justify-center bg-white min-h-screen">
+    <div class="container my-12 mx-auto px-4 md:px-12 lg:w-4/5 sm:w-full" >
       <div class="flex flex-wrap -mx-1 lg:-mx-4 card-class">
-        <h1 *ngIf="departments?.length === 0" class="text-lg">no results</h1>
-        <!-- Top Departments section -->
+        <h1 *ngIf="departments.length === 0" class="text-lg">no results</h1>
         <div class="ms-4  justify-start flex text-textBlue font-bold text-xl mt-5 w-3/4 mb-3">
           <h1 class="">Top Departments</h1>
         </div>
         <div class="w-full">
             <app-search-bar (searchChange)="onSearch($event)" ></app-search-bar>
         </div>
-        <ng-container *ngFor="let department of departments; let index = index" >
-            <div class="my-1 px-2 w-full md:w-1/2 lg:my-4 lg:px-3 lg:w-1/3 xl:w-1/4 cursor-pointer hover:scale-105 ease-in-out duration-200">
-                <app-department-card [department]="department"></app-department-card>
-            </div>
+        <div *ngIf="loader" class="w-full h-[70vh] flex justify-center items-center">
+            <app-loader [size]="50" ></app-loader>
+        </div>
+        <ng-container *ngIf="!loader">
+            <ng-container *ngFor="let department of departments; let index = index" >
+                <div class="my-1 px-2 w-full md:w-1/2 lg:my-4 lg:px-3 lg:w-1/3 xl:w-1/4 cursor-pointer hover:scale-105 ease-in-out duration-200">
+                    <app-department-card [department]="department"></app-department-card>
+                </div>
+            </ng-container>
         </ng-container>
       </div>
     </div>

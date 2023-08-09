@@ -7,7 +7,11 @@ import { Component,Input } from '@angular/core';
 })
 export class LoaderComponent {
   @Input() size:number = 10;
-  getSize():string{
-    return `w-${this.size}  h-${this.size}`
+  getSizeStyles(): { [styleName: string]: string } {
+    const sizeInPx = `${this.size}px`;
+    return {
+      width: sizeInPx,
+      height: sizeInPx
+    };
   }
 }
