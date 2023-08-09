@@ -14,6 +14,9 @@ import { DepSectionHomeComponent } from './shared/components/dep-section-home/de
 import { ProfileDetailsComponent } from './shared/components/profile-details/profile-details.component';
 import {heroBellAlertSolid,heroCalendarSolid,heroPencilSquareSolid } from '@ng-icons/heroicons/solid';
 import { HistoryComponent } from './shared/components/history/history.component';
+import { SearchBarComponent } from './shared/components/search-bar/search-bar.component';
+import { DepartmentPageComponent } from './pages/department-page/department-page.component';
+import { DepartmentCardComponent } from './shared/components/department-card/department-card.component';
 
 
 
@@ -29,6 +32,9 @@ import { HistoryComponent } from './shared/components/history/history.component'
     DepSectionHomeComponent,
     ProfileDetailsComponent,
     HistoryComponent,
+    SearchBarComponent,
+    DepartmentPageComponent,
+    DepartmentCardComponent,
   ],
   imports: [
     CommonModule,
