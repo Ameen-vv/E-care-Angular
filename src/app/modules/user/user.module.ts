@@ -21,6 +21,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './core/interceptors/token.interceptor';
 import { DoctorListComponent } from './pages/doctor-list/doctor-list.component';
 import { DoctorCardComponent } from './shared/components/doctor-card/doctor-card.component';
+import { DoctorDetailsComponent } from './pages/doctor-details/doctor-details.component';
+import { BookingPageComponent } from './pages/booking-page/booking-page.component';
 
 
 
@@ -41,6 +43,8 @@ import { DoctorCardComponent } from './shared/components/doctor-card/doctor-card
     DepartmentCardComponent,
     DoctorListComponent,
     DoctorCardComponent,
+    DoctorDetailsComponent,
+    BookingPageComponent,
   ],
   imports: [
     CommonModule,

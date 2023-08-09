@@ -7,6 +7,7 @@ import { HomepageComponent } from './pages/homepage/homepage.component';
 import { ProfileDetailsComponent } from './shared/components/profile-details/profile-details.component';
 import { DepartmentPageComponent } from './pages/department-page/department-page.component';
 import { DoctorListComponent } from './pages/doctor-list/doctor-list.component';
+import { DoctorDetailsComponent } from './pages/doctor-details/doctor-details.component';
 
 
 const routes:Routes = [{
@@ -36,6 +37,10 @@ const routes:Routes = [{
     {
       path:'doctors',
       component:DoctorListComponent
+    },
+    {
+      path:'doctorDetails/:id',
+      component:DoctorDetailsComponent
     }
   ]
 }];

@@ -35,7 +35,6 @@ export class DoctorListComponent implements OnInit,OnDestroy {
     this.getDocSub = this.userService
       .getDoctors(this.depId, searchText)
       .subscribe((response) => {
-        console.log(response);
         this.doctors = response.data;
       });
   }

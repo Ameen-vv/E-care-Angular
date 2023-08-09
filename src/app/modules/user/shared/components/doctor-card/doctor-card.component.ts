@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import {  Router } from '@angular/router';
 import { DoctorModel } from 'src/app/core/Models/CommonModels';
 
 @Component({
@@ -8,4 +9,10 @@ import { DoctorModel } from 'src/app/core/Models/CommonModels';
 })
 export class DoctorCardComponent {
     @Input() doctor!:DoctorModel;
+
+    constructor(private router : Router){}
+
+    getDrDetails(id:string):void{
+        this.router.navigate(['/user/doctorDetails',id],{state:this.doctor});
+    }
 }
