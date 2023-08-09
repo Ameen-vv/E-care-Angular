@@ -7,6 +7,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HotToastModule } from '@ngneat/hot-toast';
 import { FooterComponent } from './components/footer/footer.component';
+import { NgIconsModule } from '@ng-icons/core';
+import { heroUserCircle } from '@ng-icons/heroicons/outline';
+
 
 
 @NgModule({
@@ -21,6 +24,8 @@ import { FooterComponent } from './components/footer/footer.component';
     FormsModule,
     ReactiveFormsModule,
     HotToastModule.forRoot(),
+    NgIconsModule.withIcons({heroUserCircle})
+
   ],
   exports:[
     NavbarComponent,
@@ -29,7 +34,7 @@ import { FooterComponent } from './components/footer/footer.component';
     FormsModule,
     ReactiveFormsModule,
     HotToastModule,
-    FooterComponent
+    FooterComponent,
   ]
 })
 export class SharedModule { }

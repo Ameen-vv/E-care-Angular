@@ -8,7 +8,7 @@ import { NavList } from 'src/app/core/Models/CommonModels';
 })
 export class NavbarComponent {
   @Input() navList!:NavList[];
-  @Input() userLogged:boolean = false;
+  @Input() userLogged!:boolean;
   @Output() logInButton : EventEmitter<void> = new EventEmitter();
   @Output() registerButton : EventEmitter<void> = new EventEmitter();
   sideBar:boolean = false;

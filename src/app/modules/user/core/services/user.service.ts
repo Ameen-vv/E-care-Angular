@@ -3,13 +3,14 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import {
   getAllDepUrl,
+  getDoctorsUrl,
   getOtpUrl,
   resendOtpUrl,
   userSignInUrl,
   verifyOtpUrl,
 } from '../../shared/constants/urls';
 import { UserRegister, UserSignIn } from '../models/userModels';
-import { DepModel } from 'src/app/core/Models/CommonModels';
+import { DepModel, DoctorModel } from 'src/app/core/Models/CommonModels';
 
 @Injectable({
   providedIn: 'root',
@@ -43,5 +44,14 @@ export class UserService {
   
   getAllDepartments(searchText:string):Observable<{data:DepModel[],count:number}>{
     return this.http.get<{data:DepModel[],count:number}>(`${getAllDepUrl}?search=${searchText}`);
+  }
+
+  getDoctors(depId:string,searchText:string):Observable<{data:DoctorModel[],count:number}>{
+    return this.http.get<{data:DoctorModel[],count:number}>(`${getDoctorsUrl}?department=${depId}&search=${searchText}`);
+  }
+
+  checkUserToken():boolean{
+    const token = localStorage.getItem('token');
+    return token ? true : false ; 
   }
 }
