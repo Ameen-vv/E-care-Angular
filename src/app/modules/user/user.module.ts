@@ -13,6 +13,7 @@ import { HomepageComponent } from './pages/homepage/homepage.component';
 import { DepSectionHomeComponent } from './shared/components/dep-section-home/dep-section-home.component';
 import { ProfileDetailsComponent } from './shared/components/profile-details/profile-details.component';
 import {heroBellAlertSolid,heroCalendarSolid,heroPencilSquareSolid } from '@ng-icons/heroicons/solid';
+import { HistoryComponent } from './shared/components/history/history.component';
 
 
 
@@ -27,6 +28,7 @@ import {heroBellAlertSolid,heroCalendarSolid,heroPencilSquareSolid } from '@ng-i
     HomepageComponent,
     DepSectionHomeComponent,
     ProfileDetailsComponent,
+    HistoryComponent,
   ],
   imports: [
     CommonModule,

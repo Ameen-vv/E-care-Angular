@@ -7,11 +7,11 @@ import { NavList } from 'src/app/core/Models/CommonModels';
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.scss']
 })
-export class UserComponent  {
+export class UserComponent implements OnInit  {
   navList:NavList[] = [
     {
       name:"Home",
-      path:"/user"
+      path:"/user/home"
     },
     {
       name:"Departments",
@@ -27,7 +27,12 @@ export class UserComponent  {
     }
   ]
   constructor(private router : Router){
-    router.navigate(['/user/home'])
+  }
+
+  ngOnInit(): void {
+    if(this.router.url === '/user' || this.router.url === '/user/'){
+      this.router.navigate(['/user/home'])
+    }
   }
   
 }
