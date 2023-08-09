@@ -1,6 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavList } from 'src/app/core/Models/CommonModels';
+import { UserService } from './core/services/user.service';
 
 @Component({
   selector: 'app-user',
@@ -15,18 +16,22 @@ export class UserComponent implements OnInit  {
     },
     {
       name:"Departments",
-      path:'#'
+      path:'/user/departments'
     },
     {
       name:"Doctors",
-      path:"#"
+      path:"/user/doctors"
     },
     {
       name:"About Us",
       path:"#"
     }
   ]
-  constructor(private router : Router){
+  constructor(private router : Router,private userService : UserService){
+  }
+
+  userCheck():boolean{
+    return this.userService.checkUserToken();
   }
 
   ngOnInit(): void {

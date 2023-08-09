@@ -13,9 +13,10 @@
         {{item.name}}
       </a>
     </div>
-    <div class="w-2/5 xl:w-1/5 flex " *ngIf="!userLogged">
-      <button class="ms-auto p-2 px-6 text-white text-sm bg-mainColor rounded hover:bg-secColor" (click)="clickLogIn()">Log In</button>
-      <button class="ms-2 w p-2 px-6 text-white text-sm bg-mainColor rounded hover:bg-secColor" (click)="clickRegister()">Register</button>
+    <div class="w-2/5 xl:w-1/5 flex " >
+      <button class="ms-auto p-2 px-6 text-white text-sm bg-mainColor rounded hover:bg-secColor" (click)="clickLogIn()" *ngIf="!userLogged">Log In</button>
+      <button class="ms-2 w p-2 px-6 text-white text-sm bg-mainColor rounded hover:bg-secColor" (click)="clickRegister()" *ngIf="!userLogged">Register</button>
+      <ng-icon name="heroUserCircle"  class="text-textBlue text-[27px] ms-auto mr-2" *ngIf="userLogged"></ng-icon>
     </div>
   </div>
   <div class="block w-full flex-grow lg:hidden  items-center justify-center  text-textBlue" *ngIf="sideBar">
@@ -24,9 +25,11 @@
         {{item.name}}
       </a> 
     </div>
-    <div class="w-full" *ngIf="!userLogged">
-      <button class="p-2 px-6 text-white text-sm bg-mainColor rounded" (click)="clickLogIn()">LogIn</button>
-      <button class="p-2 px-6 text-white text-sm bg-mainColor rounded ms-3" (click)="clickRegister()">Register</button>
+    <div class="w-full"  >
+      <button class="p-2 px-6 text-white text-sm bg-mainColor rounded" (click)="clickLogIn()" *ngIf="!userLogged">LogIn</button>
+      <button class="p-2 px-6 text-white text-sm bg-mainColor rounded ms-3" (click)="clickRegister()" *ngIf="!userLogged">Register</button>
+      <button class="p-2 px-6 text-white text-sm bg-mainColor rounded"  *ngIf="userLogged">Profile</button>
     </div>
+    
   </div>
 </nav>

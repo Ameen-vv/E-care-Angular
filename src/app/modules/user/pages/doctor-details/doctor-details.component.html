@@ -1,0 +1,70 @@
+<div class="bg-gray-100">
+    <div class="max-w-4xl sm:w-full mx-auto py-6 px-4 sm:px-6 lg:px-8">
+      <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+        <div class="flex flex-col sm:flex-row items-center justify-start sm:w-full bg-gray-50 px-6 py-5">
+          <div class="flex items-center mb-3 sm:mb-0 drProfilView">
+            <img
+              class="h-28 w-28 rounded-full"
+              [src]="doctor.profilePic || 'https://conferenceoeh.com/wp-content/uploads/profile-pic-dummy.png'"
+              alt="Doctor's profile picture"
+            />
+            <div class="ml-12 mt-3">
+              <h1 class="text-xl font-semibold text-textBlue mb-1">
+                Dr. {{ doctor.fullName }}
+              </h1>
+              <div>
+                <div>
+                  <p class="text-sm text-gray-500 mb-4">{{ doctor.department.name }}</p>
+                  <p class="text-sm text-gray-500 mb-2">{{ doctor.experience }} years of experience</p>
+                  <p class="text-sm text-gray-500 mb-2 flex">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 my-auto">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                    </svg>
+                    : {{ doctor.hospital }}
+                  </p>
+                  <p class="text-sm text-gray-500 mb-2 flex">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 my-auto">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M15 8.25H9m6 3H9m3 6l-3-3h1.5a3 3 0 100-6M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    : {{ doctor.priceOffline | currency:'INR' }} Consultant
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="px-6 py-4">
+          <h2 class="text-lg font-medium text-textBlue mb-2">
+            Available Dates for Consulting
+          </h2>
+          <ng-container *ngIf="doctor?.timings?.length === 0; else slotsAvailable">
+            <h1>No Slots Available</h1>
+          </ng-container>
+          <ng-template #slotsAvailable>
+            <ul class="divide-y divide-gray-200">
+              <li class="py-3" *ngFor="let timing of doctor?.timings">
+                <div class="flex justify-between">
+                  <div class="flex items-center">
+                    <span class="text-gray-600 text-sm font-medium">
+                      {{ timing.day }} {{ timing.startTime }} to {{ timing.endTime }}
+                    </span>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </ng-template>
+        </div>
+        <div class="flex items-center justify-end mb-3 me-3 drProfileButtonDiv mt-2">
+          <button
+            type="button"
+            class="ml-3 px-4 py-2 border border-gray-300 text-sm font-medium rounded-md  hover:bg-secColor hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 mb-2 sm:mb-0 drProfileButtons bg-mainColor text-white"
+            
+          >
+            Book Now
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

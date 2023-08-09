@@ -17,6 +17,12 @@ import { HistoryComponent } from './shared/components/history/history.component'
 import { SearchBarComponent } from './shared/components/search-bar/search-bar.component';
 import { DepartmentPageComponent } from './pages/department-page/department-page.component';
 import { DepartmentCardComponent } from './shared/components/department-card/department-card.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './core/interceptors/token.interceptor';
+import { DoctorListComponent } from './pages/doctor-list/doctor-list.component';
+import { DoctorCardComponent } from './shared/components/doctor-card/doctor-card.component';
+import { DoctorDetailsComponent } from './pages/doctor-details/doctor-details.component';
+import { BookingPageComponent } from './pages/booking-page/booking-page.component';
 
 
 
@@ -35,6 +41,10 @@ import { DepartmentCardComponent } from './shared/components/department-card/dep
     SearchBarComponent,
     DepartmentPageComponent,
     DepartmentCardComponent,
+    DoctorListComponent,
+    DoctorCardComponent,
+    DoctorDetailsComponent,
+    BookingPageComponent,
   ],
   imports: [
     CommonModule,
@@ -43,7 +53,12 @@ import { DepartmentCardComponent } from './shared/components/department-card/dep
     NgIconsModule.withIcons({heroBellAlertSolid,heroCalendarSolid,heroPencilSquareSolid})
   ],
   providers:[
-    UserService
+    UserService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
+    }
   ]
 })
 export class UserModule { }
