@@ -10,3 +10,9 @@ export interface UserRegister extends UserSignIn{
     confirmPass?:string;
     address:string;
 }
+
+export interface HeroBanner{
+    title:string;
+    subtitle:string;
+    image:string;
+}
