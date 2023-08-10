@@ -1,1 +1,76 @@
-<p>booking-page works!</p>
+<div class="flex flex-col items-center justify-center h-full mt-4">
+    <div *ngIf="loading" class="fixed top-0 left-0 w-screen h-screen flex justify-center items-center bg-gray-500 bg-opacity-50 z-50">
+      <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-gray-900"></div>
+    </div>
+  
+    <div  class="bg-white rounded-lg shadow-lg p-8 w-full md:w-1/2">
+      <div class="w-full flex justify-center">
+        <h2 class="text-xl font-semibold mb-4 text-textBlue">Book an Appointment</h2>
+      </div>
+      <h3 class="mb-2 text-lg font-semibold text-textBlue">Doctor : Dr {{ doctor.fullName }}</h3>
+      <h3 class=" text-md font-semibold text-textBlue mb-4">Department : {{ doctor.department.name }}</h3>
+  
+      <div class="mb-4">
+        <label for="date" class="block text-sm text-gray-700 font-medium mb-2">Date</label>
+        <mat-form-field>
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="picker" [(ngModel)]="date" (ngModelChange)="handleDateChange()" name="date">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+      </div>
+  
+      <div *ngIf="date" class="mb-4">
+        <label for="time" class="block text-sm text-gray-700 font-medium mb-2">Time</label>
+        <select id="time" name="slot" class="border-gray-400 border rounded-lg p-3 w-full" required [(ngModel)]="selectedSlot">
+          <option value="" disabled>Select</option>
+          <ng-container *ngIf="time.length > 0; else noSlots">
+            <ng-container *ngFor="let slot of time">
+                <option [value]="slot.startTime +'-'+ slot.endTime" class="p-5">
+                  {{ slot.startTime }} - {{ slot.endTime }}
+                </option>
+              </ng-container>
+          </ng-container>
+          <ng-template #noSlots>
+            <option value="" disabled>No slots available</option>
+          </ng-template>
+        </select>
+      </div>
+  
+      <div class="flex justify-center mt-3" *ngIf="date && selectedSlot">
+        <button type="button"  class="bg-mainColor hover:bg-secColor text-white py-2 px-4 rounded-lg" (click)="handleSubmit()">Submit</button>
+      </div>
+    </div>
+  
+    <div *ngIf="isOpen" class="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center">
+        <div *ngIf="isOpen" class="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-50 flex justify-center items-center">
+            <div class="bg-white p-8 rounded-lg">
+              <h2 class="text-2xl font-bold mb-6">Payment Details</h2>
+              <p class="text-lg mb-6">
+                Total Amount: <span class="font-bold">₹ {{ price }}</span>
+              </p>
+              <div class="flex justify-between">
+                <button
+                  class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg mr-4"
+                >
+                  Pay with Wallet
+                </button>
+                <button
+                  class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg me-3"
+                >
+                  Pay Online
+                </button>
+                <button
+                  class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg"
+                  (click)="cancel()"
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+          
+    </div>
+  </div>
+  

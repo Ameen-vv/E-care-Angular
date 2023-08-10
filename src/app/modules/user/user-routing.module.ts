@@ -8,6 +8,7 @@ import { ProfileDetailsComponent } from './shared/components/profile-details/pro
 import { DepartmentPageComponent } from './pages/department-page/department-page.component';
 import { DoctorListComponent } from './pages/doctor-list/doctor-list.component';
 import { DoctorDetailsComponent } from './pages/doctor-details/doctor-details.component';
+import { BookingPageComponent } from './pages/booking-page/booking-page.component';
 
 
 const routes:Routes = [{
@@ -41,6 +42,10 @@ const routes:Routes = [{
     {
       path:'doctorDetails/:id',
       component:DoctorDetailsComponent
+    },
+    {
+      path:'book',
+      component:BookingPageComponent
     }
   ]
 }];

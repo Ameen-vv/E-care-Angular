@@ -9,6 +9,10 @@ import { HotToastModule } from '@ngneat/hot-toast';
 import { FooterComponent } from './components/footer/footer.component';
 import { NgIconsModule } from '@ng-icons/core';
 import { heroUserCircle } from '@ng-icons/heroicons/outline';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatInputModule} from '@angular/material/input';
+import {MatNativeDateModule} from '@angular/material/core'
+
 
 
 
@@ -24,8 +28,7 @@ import { heroUserCircle } from '@ng-icons/heroicons/outline';
     FormsModule,
     ReactiveFormsModule,
     HotToastModule.forRoot(),
-    NgIconsModule.withIcons({heroUserCircle})
-
+    NgIconsModule.withIcons({heroUserCircle}),
   ],
   exports:[
     NavbarComponent,
@@ -35,6 +38,10 @@ import { heroUserCircle } from '@ng-icons/heroicons/outline';
     ReactiveFormsModule,
     HotToastModule,
     FooterComponent,
+    MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule
+    
   ]
 })
 export class SharedModule { }
