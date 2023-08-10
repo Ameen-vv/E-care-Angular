@@ -35,7 +35,7 @@ export class SignInComponent {
     this.userService.userSignIn(user).subscribe(
       (response) => {
         if (response.ok) {
-          this.router.navigate(['/user']);
+          this.router.navigate(['/user/home']);
           response.token && localStorage.setItem('token', response.token);
         } else {
           this.toast.error(response.message);

@@ -11,6 +11,7 @@ export class NavbarComponent {
   @Input() userLogged!:boolean;
   @Output() logInButton : EventEmitter<void> = new EventEmitter();
   @Output() registerButton : EventEmitter<void> = new EventEmitter();
+  @Output() navigateProfile : EventEmitter<void> = new EventEmitter();
   sideBar:boolean = false;
 
 
@@ -24,6 +25,10 @@ export class NavbarComponent {
 
   clickRegister():void{
     this.logInButton.emit();
+  }
+
+  goToProfile():void{
+    this.navigateProfile.emit();
   }
 
 

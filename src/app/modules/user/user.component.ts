@@ -34,6 +34,10 @@ export class UserComponent implements OnInit  {
     return this.userService.checkUserToken();
   }
 
+  goToProfile():void{
+    this.router.navigate(['/user/profile']);
+  }
+
   ngOnInit(): void {
     if(this.router.url === '/user' || this.router.url === '/user/'){
       this.router.navigate(['/user/home'])

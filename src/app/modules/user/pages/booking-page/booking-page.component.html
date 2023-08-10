@@ -12,13 +12,7 @@
   
       <div class="mb-4">
         <label for="date" class="block text-sm text-gray-700 font-medium mb-2">Date</label>
-        <mat-form-field>
-            <mat-label>Choose a date</mat-label>
-            <input matInput [matDatepicker]="picker" [min]="minDate" [max]="maxDate" [(ngModel)]="date" (ngModelChange)="handleDateChange()" name="date">
-            <mat-hint>MM/DD/YYYY</mat-hint>
-            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
+        <input type="date" id="datePicker" class="px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500" [min]="minDate" [max]="maxDate" [(ngModel)]="date" (ngModelChange)="handleDateChange()" name="date">
       </div>
   
       <div *ngIf="date" class="mb-4">

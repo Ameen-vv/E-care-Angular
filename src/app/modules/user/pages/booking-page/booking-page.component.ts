@@ -42,9 +42,11 @@ export class BookingPageComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-      this.orderSub.unsubscribe();
-      this.payInitSub.unsubscribe();
-      this.payVerifySub.unsubscribe();
+      this.orderSub?.unsubscribe();
+      this.payInitSub?.unsubscribe();
+      this.payVerifySub?.unsubscribe();
+      this.cancelSub?.unsubscribe();
+      console.log('asd')
   }
   
   handleDay(): void {

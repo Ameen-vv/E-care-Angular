@@ -9,9 +9,6 @@ import { HotToastModule } from '@ngneat/hot-toast';
 import { FooterComponent } from './components/footer/footer.component';
 import { NgIconsModule } from '@ng-icons/core';
 import { heroUserCircle } from '@ng-icons/heroicons/outline';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import { MatInputModule} from '@angular/material/input';
-import {MatNativeDateModule} from '@angular/material/core'
 
 
 
@@ -38,10 +35,6 @@ import {MatNativeDateModule} from '@angular/material/core'
     ReactiveFormsModule,
     HotToastModule,
     FooterComponent,
-    MatDatepickerModule,
-    MatInputModule,
-    MatNativeDateModule
-    
   ]
 })
 export class SharedModule { }
