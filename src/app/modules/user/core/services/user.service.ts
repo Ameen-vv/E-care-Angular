@@ -2,14 +2,18 @@ import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import {
+  cancelAppointmentUrl,
+  createAppointmentUrl,
   getAllDepUrl,
   getDoctorsUrl,
   getOtpUrl,
+  initiallizePayUrl,
   resendOtpUrl,
   userSignInUrl,
   verifyOtpUrl,
+  verifyPayUrl,
 } from '../../shared/constants/urls';
-import { UserRegister, UserSignIn } from '../models/userModels';
+import { CreateOrder, PaymentVerification, UserRegister, UserSignIn } from '../models/userModels';
 import { DepModel, DoctorModel } from 'src/app/core/Models/CommonModels';
 
 @Injectable({
@@ -48,6 +52,22 @@ export class UserService {
 
   getDoctors(depId:string,searchText:string):Observable<{data:DoctorModel[],count:number}>{
     return this.http.get<{data:DoctorModel[],count:number}>(`${getDoctorsUrl}?department=${depId}&search=${searchText}`);
+  }
+
+  createOrder(details:CreateOrder):Observable<{ok:boolean,message:string,price:number,appointmentId:string}>{
+    return this.http.post<{ok:boolean,message:string,price:number,appointmentId:string}>(createAppointmentUrl,{appointment:details});
+  }
+
+  initiallizePayment(orderId:string):Observable<{order:any}>{
+    return this.http.get<{order:any}>(`${initiallizePayUrl}${orderId}`);
+  }
+
+  verifyPayment(data:PaymentVerification,id:string):Observable<{signatureIsValid:boolean}>{
+    return this.http.post<{signatureIsValid:boolean}>(`${verifyPayUrl}/${id}`,data);
+  }
+
+  cancelAppointment(id:string):Observable<{ok:boolean,message:string}>{
+    return this.http.get<{ok:boolean,message:string}>(`${cancelAppointmentUrl}${id}`);
   }
 
   checkUserToken():boolean{

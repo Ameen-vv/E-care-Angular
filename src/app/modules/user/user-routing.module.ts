@@ -8,6 +8,9 @@ import { ProfileDetailsComponent } from './shared/components/profile-details/pro
 import { DepartmentPageComponent } from './pages/department-page/department-page.component';
 import { DoctorListComponent } from './pages/doctor-list/doctor-list.component';
 import { DoctorDetailsComponent } from './pages/doctor-details/doctor-details.component';
+import { BookingPageComponent } from './pages/booking-page/booking-page.component';
+import { logInCheckGuard } from './core/guards/logInCheck/log-in-check.guard';
+import { userCheckGuard } from './core/guards/authGuard/user-check.guard';
 
 
 const routes:Routes = [{
@@ -16,11 +19,13 @@ const routes:Routes = [{
   children:[
     {
       path:'register',
-      component:UserRegistrationComponent
+      component:UserRegistrationComponent,
+      canActivate:[logInCheckGuard]
     },
     {
       path:'signIn',
-      component:SignInComponent
+      component:SignInComponent,
+      canActivate:[logInCheckGuard]
     },
     {
       path:'home',
@@ -28,7 +33,8 @@ const routes:Routes = [{
     },
     {
       path:'profile',
-      component:ProfileDetailsComponent
+      component:ProfileDetailsComponent,
+      canActivate:[userCheckGuard]
     },
     {
       path:'departments',
@@ -36,11 +42,17 @@ const routes:Routes = [{
     },
     {
       path:'doctors',
-      component:DoctorListComponent
+      component:DoctorListComponent,
     },
     {
       path:'doctorDetails/:id',
-      component:DoctorDetailsComponent
+      component:DoctorDetailsComponent,
+      canActivate:[userCheckGuard]
+    },
+    {
+      path:'book',
+      component:BookingPageComponent,
+      canActivate:[userCheckGuard]
     }
   ]
 }];

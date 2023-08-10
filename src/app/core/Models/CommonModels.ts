@@ -53,3 +53,18 @@ export interface DocTimings{
     endTime:string;
     slots:string;
 };
+
+
+export interface AppointmentModel{
+    doctorId:DoctorModel;
+    patientId:UserModel;
+    slot:string;
+    paymentStatus:boolean;
+    date:Date;
+    status:'booked'|'cancelled'|'unVisited';
+    createdAt:Date;
+    price:number;
+    paymentId:string;
+    paymentMode:'online'|'wallet';
+}
+

@@ -12,6 +12,7 @@ import { heroUserCircle } from '@ng-icons/heroicons/outline';
 
 
 
+
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -24,8 +25,7 @@ import { heroUserCircle } from '@ng-icons/heroicons/outline';
     FormsModule,
     ReactiveFormsModule,
     HotToastModule.forRoot(),
-    NgIconsModule.withIcons({heroUserCircle})
-
+    NgIconsModule.withIcons({heroUserCircle}),
   ],
   exports:[
     NavbarComponent,
