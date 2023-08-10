@@ -16,3 +16,15 @@ export interface HeroBanner{
     subtitle:string;
     image:string;
 }
+
+export interface CreateOrder{
+    date:Date,
+    time:string,
+    doctorId:string
+}
+
+export interface PaymentVerification{
+    razorpay_order_id:string;
+    razorpay_payment_id:string;
+    razorpay_signature:string;
+}
