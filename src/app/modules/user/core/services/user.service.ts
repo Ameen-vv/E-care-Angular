@@ -2,6 +2,7 @@ import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import {
+  cancelAppointmentUrl,
   createAppointmentUrl,
   getAllDepUrl,
   getDoctorsUrl,
@@ -61,8 +62,12 @@ export class UserService {
     return this.http.get<{order:any}>(`${initiallizePayUrl}${orderId}`);
   }
 
-  verifyPayment(data:PaymentVerification):Observable<{signatureIsValid:boolean}>{
-    return this.http.post<{signatureIsValid:boolean}>(verifyPayUrl,data);
+  verifyPayment(data:PaymentVerification,id:string):Observable<{signatureIsValid:boolean}>{
+    return this.http.post<{signatureIsValid:boolean}>(`${verifyPayUrl}/${id}`,data);
+  }
+
+  cancelAppointment(id:string):Observable<{ok:boolean,message:string}>{
+    return this.http.get<{ok:boolean,message:string}>(`${cancelAppointmentUrl}${id}`);
   }
 
   checkUserToken():boolean{

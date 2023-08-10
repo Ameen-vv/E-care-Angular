@@ -27,15 +27,24 @@ export class BookingPageComponent implements OnDestroy {
   orderId!:string;
   orderSub!:Subscription;
   payInitSub!:Subscription;
+  payVerifySub!:Subscription;
+  cancelSub!:Subscription;
+  minDate:Date;
+  maxDate:Date;
 
   appointmentForm!: FormGroup;
 
   constructor(private route: ActivatedRoute,private userService : UserService,private toast : HotToastService) {
     this.doctor = history.state;
+    this.minDate = new Date();
+    this.maxDate = new Date();
+    this.maxDate.setMonth(this.minDate.getMonth() + 1);
   }
 
   ngOnDestroy(): void {
       this.orderSub.unsubscribe();
+      this.payInitSub.unsubscribe();
+      this.payVerifySub.unsubscribe();
   }
   
   handleDay(): void {
@@ -82,7 +91,6 @@ export class BookingPageComponent implements OnDestroy {
     if(this.date && this.selectedSlot){
      this.orderSub = this.userService.createOrder({date:this.date,time:this.selectedSlot,doctorId:this.doctor._id}).subscribe(
         (response)=>{
-          console.log(response)
           if(response.ok){
             this.isOpen = true;
             this.price = response.price;
@@ -97,6 +105,24 @@ export class BookingPageComponent implements OnDestroy {
   }
 
   initiallizeRazPay(){
+    const verifyPay = (res:PaymentVerification) => {
+      this.payVerifySub = this.userService.verifyPayment(res,this.orderId).subscribe(
+        (response)=>{
+          if(response.signatureIsValid){
+            this.isOpen = false;
+            this.date = null;
+            this.selectedSlot = '';
+            this.toast.success('Payment Successfull')
+          }else{
+            this.toast.error('Payment failed please retry')
+            this.date = null;
+            this.selectedSlot = '';
+            this.isOpen = false;
+          } 
+        }
+        )
+    }
+    
     this.payInitSub = this.userService.initiallizePayment(this.orderId).subscribe(
       (response) => {
         const options = {
@@ -105,15 +131,13 @@ export class BookingPageComponent implements OnDestroy {
           "currency":response.order.currency, 
           "name": "E Care",
           "order_id":response.order.id,
-          "handler": function (res:PaymentVerification){
-            
-          },
+          "handler":verifyPay,
           "theme": {
           "color": "#0AB3B8"
           }
           };
           let rzp1 = new Razorpay(options)
-            rzp1.open()
+          rzp1.open()
       }
     )
   }
@@ -122,5 +146,10 @@ export class BookingPageComponent implements OnDestroy {
     this.isOpen = false;
     this.date = null;
     this.selectedSlot = '';
+    this.cancelSub = this.userService.cancelAppointment(this.orderId).subscribe(
+      (response)=>{
+        !response.ok && this.toast.error('Something Went Wrong');
+      }
+      )
   }
 }

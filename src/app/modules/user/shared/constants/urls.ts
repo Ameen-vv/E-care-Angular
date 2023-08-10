@@ -9,3 +9,4 @@ export const getDoctorsUrl:string = `${BaseUrl}getDoctors`;
 export const createAppointmentUrl:string = `${BaseUrl}bookAppoinment`;
 export const initiallizePayUrl:string = `${BaseUrl}initializePayment/`;
 export const verifyPayUrl:string = `${BaseUrl}verifyPayment`;
+export const cancelAppointmentUrl:string = `${BaseUrl}cancelAppointment/`;
