@@ -46,7 +46,6 @@ export class BookingPageComponent implements OnDestroy {
       this.payInitSub?.unsubscribe();
       this.payVerifySub?.unsubscribe();
       this.cancelSub?.unsubscribe();
-      console.log('asd')
   }
   
   handleDay(): void {
@@ -111,7 +110,6 @@ export class BookingPageComponent implements OnDestroy {
       this.payVerifySub = this.userService.verifyPayment(res,this.orderId).subscribe(
         (response)=>{
           if(response.signatureIsValid){
-            this.isOpen = false;
             this.date = null;
             this.selectedSlot = '';
             this.toast.success('Payment Successfull')
@@ -119,8 +117,8 @@ export class BookingPageComponent implements OnDestroy {
             this.toast.error('Payment failed please retry')
             this.date = null;
             this.selectedSlot = '';
-            this.isOpen = false;
-          } 
+          }
+          this.isOpen = false; 
         }
         )
     }

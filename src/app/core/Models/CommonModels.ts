@@ -22,6 +22,7 @@ export interface UserModel{
     block:boolean;
     createdAt:Date;
     profilePic?:string;
+    address:string;
 
 };
 
@@ -56,6 +57,7 @@ export interface DocTimings{
 
 
 export interface AppointmentModel{
+    _id:string;
     doctorId:DoctorModel;
     patientId:UserModel;
     slot:string;

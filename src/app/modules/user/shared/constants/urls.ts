@@ -10,3 +10,6 @@ export const createAppointmentUrl:string = `${BaseUrl}bookAppoinment`;
 export const initiallizePayUrl:string = `${BaseUrl}initializePayment/`;
 export const verifyPayUrl:string = `${BaseUrl}verifyPayment`;
 export const cancelAppointmentUrl:string = `${BaseUrl}cancelAppointment/`;
+export const getHistoryUrl:string = `${BaseUrl}getAppointmentHistory`;
+export const getUserUrl:string = `${BaseUrl}getUserDetails`;
+export const getAppointmentsUrl:string = `${BaseUrl}getAppointments`;

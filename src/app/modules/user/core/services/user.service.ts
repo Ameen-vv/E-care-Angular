@@ -5,8 +5,11 @@ import {
   cancelAppointmentUrl,
   createAppointmentUrl,
   getAllDepUrl,
+  getAppointmentsUrl,
   getDoctorsUrl,
+  getHistoryUrl,
   getOtpUrl,
+  getUserUrl,
   initiallizePayUrl,
   resendOtpUrl,
   userSignInUrl,
@@ -14,7 +17,7 @@ import {
   verifyPayUrl,
 } from '../../shared/constants/urls';
 import { CreateOrder, PaymentVerification, UserRegister, UserSignIn } from '../models/userModels';
-import { DepModel, DoctorModel } from 'src/app/core/Models/CommonModels';
+import { AppointmentModel, DepModel, DoctorModel, UserModel } from 'src/app/core/Models/CommonModels';
 
 @Injectable({
   providedIn: 'root',
@@ -68,6 +71,18 @@ export class UserService {
 
   cancelAppointment(id:string):Observable<{ok:boolean,message:string}>{
     return this.http.get<{ok:boolean,message:string}>(`${cancelAppointmentUrl}${id}`);
+  }
+
+  getHistory():Observable<{data:AppointmentModel[]}>{
+    return this.http.get<{data:AppointmentModel[]}>(getHistoryUrl);
+  }
+
+  getUserDetails():Observable<{data:UserModel}>{
+    return this.http.get<{data:UserModel}>(getUserUrl);
+  }
+
+  getAppointments():Observable<{data:AppointmentModel[]}>{
+    return this.http.get<{data:AppointmentModel[]}>(getAppointmentsUrl);
   }
 
   checkUserToken():boolean{
