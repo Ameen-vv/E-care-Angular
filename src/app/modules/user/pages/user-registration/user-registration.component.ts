@@ -1,20 +1,23 @@
-import { Component } from '@angular/core';
+import { Component,OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { UserRegister, UserSignIn } from '../../core/models/userModels';
 import { HotToastService } from '@ngneat/hot-toast'
 import { UserService } from '../../core/services/user.service';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-user-registration',
   templateUrl: './user-registration.component.html',
   styleUrls: ['./user-registration.component.scss']
 })
-export class UserRegistrationComponent {
+export class UserRegistrationComponent implements OnDestroy {
   authForm!: FormGroup;
   loader: boolean = false;
   authType: 'signUp' | 'otp' = 'signUp';
   private user!: UserRegister;
+  getotpSub!:Subscription;
+  verifyOtpSub!:Subscription;
 
   constructor(private formBuilder: FormBuilder,
     private toast: HotToastService,
@@ -31,6 +34,11 @@ export class UserRegistrationComponent {
     })
   }
 
+  ngOnDestroy(): void {
+      this.getotpSub.unsubscribe();
+      this.verifyOtpSub.unsubscribe();
+  }
+
   phoneValidator(control: AbstractControl): { [key: string]: any } | null {
     const validPhoneNumber = /^\d{10}$/;
     const value = control.value;
@@ -45,7 +53,7 @@ export class UserRegistrationComponent {
       delete user.confirmPass;
       this.user = user;
       this.loader = true;
-      this.userService.getOtp(user.email).subscribe(
+      this.getotpSub = this.userService.getOtp(user.email).subscribe(
         (response) => {
           response.ok ? (this.authType = 'otp') :
             this.toast.error(response.message);
@@ -62,7 +70,7 @@ export class UserRegistrationComponent {
 
   verifyOtpAndSignUp(otp: string) {
     this.loader = true;
-    this.userService.verifyOtpAndSignUp(this.user, otp).subscribe(
+    this.verifyOtpSub = this.userService.verifyOtpAndSignUp(this.user, otp).subscribe(
       (response) => {
         response.ok ? this.router.navigate(['/user/signIn']) :
           this.toast.error(response.message);

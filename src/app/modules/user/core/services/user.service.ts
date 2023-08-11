@@ -5,16 +5,22 @@ import {
   cancelAppointmentUrl,
   createAppointmentUrl,
   getAllDepUrl,
+  getAppointmentsUrl,
   getDoctorsUrl,
+  getHistoryUrl,
   getOtpUrl,
+  getTopDepUrl,
+  getUserUrl,
+  getWalletUrl,
   initiallizePayUrl,
+  payWithWalletUrl,
   resendOtpUrl,
   userSignInUrl,
   verifyOtpUrl,
   verifyPayUrl,
 } from '../../shared/constants/urls';
-import { CreateOrder, PaymentVerification, UserRegister, UserSignIn } from '../models/userModels';
-import { DepModel, DoctorModel } from 'src/app/core/Models/CommonModels';
+import { CreateOrder, PaymentVerification, UserRegister, UserSignIn, WalletModel } from '../models/userModels';
+import { AppointmentModel, DepModel, DoctorModel, UserModel } from 'src/app/core/Models/CommonModels';
 
 @Injectable({
   providedIn: 'root',
@@ -70,6 +76,30 @@ export class UserService {
     return this.http.get<{ok:boolean,message:string}>(`${cancelAppointmentUrl}${id}`);
   }
 
+  getHistory():Observable<{data:AppointmentModel[]}>{
+    return this.http.get<{data:AppointmentModel[]}>(getHistoryUrl);
+  }
+
+  getUserDetails():Observable<{data:UserModel}>{
+    return this.http.get<{data:UserModel}>(getUserUrl);
+  }
+
+  getAppointments():Observable<{data:AppointmentModel[]}>{
+    return this.http.get<{data:AppointmentModel[]}>(getAppointmentsUrl);
+  }
+
+  getWallet():Observable<{data:WalletModel}>{
+    return this.http.get<{data:WalletModel}>(getWalletUrl);
+  }
+
+  payWithWallet(id:string):Observable<{payment:boolean,message:string}>{
+    return this.http.get<{payment:boolean,message:string}>(`${payWithWalletUrl + id}`)
+  }
+
+  getTopDep():Observable<{data:DepModel[]}>{
+    return this.http.get<{data:DepModel[]}>(getTopDepUrl);
+  }
+  
   checkUserToken():boolean{
     const token = localStorage.getItem('token');
     return token ? true : false ; 

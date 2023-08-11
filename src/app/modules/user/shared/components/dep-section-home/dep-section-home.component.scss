@@ -53,10 +53,7 @@
     color: #fff;
   }
   
-  .department-list li.active:hover {
-    background-color: #fff;
-    color: #00468b;
-  }
+  
   
   .department-details {
     flex: 1;
@@ -168,14 +165,4 @@
     background-color: #0AB3B8;
     color: black;
   }
-  .book-btn{
-    background-color: #0AB3B8;
-    padding: 1rem;
-    color: #fff;
-    font-size: 12px;
-  }
-.book-btn:hover{
-    background-color: #F2F6FF;
-    color: #00468b;
-
-}
+  

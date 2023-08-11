@@ -1,6 +1,6 @@
 import { Component,OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DocTimings, DoctorModel } from 'src/app/core/Models/CommonModels';
 import { UserService } from '../../core/services/user.service';
 import { HotToastService } from '@ngneat/hot-toast';
@@ -28,13 +28,14 @@ export class BookingPageComponent implements OnDestroy {
   orderSub!:Subscription;
   payInitSub!:Subscription;
   payVerifySub!:Subscription;
+  walletSub!:Subscription;
   cancelSub!:Subscription;
   minDate:Date;
   maxDate:Date;
 
   appointmentForm!: FormGroup;
 
-  constructor(private route: ActivatedRoute,private userService : UserService,private toast : HotToastService) {
+  constructor(private route: ActivatedRoute,private userService : UserService,private toast : HotToastService,private router : Router) {
     this.doctor = history.state;
     this.minDate = new Date();
     this.maxDate = new Date();
@@ -46,7 +47,6 @@ export class BookingPageComponent implements OnDestroy {
       this.payInitSub?.unsubscribe();
       this.payVerifySub?.unsubscribe();
       this.cancelSub?.unsubscribe();
-      console.log('asd')
   }
   
   handleDay(): void {
@@ -111,16 +111,16 @@ export class BookingPageComponent implements OnDestroy {
       this.payVerifySub = this.userService.verifyPayment(res,this.orderId).subscribe(
         (response)=>{
           if(response.signatureIsValid){
-            this.isOpen = false;
             this.date = null;
             this.selectedSlot = '';
-            this.toast.success('Payment Successfull')
+            this.toast.success('Payment Successfull');
+            this.router.navigate(['/user/home']);
           }else{
             this.toast.error('Payment failed please retry')
             this.date = null;
             this.selectedSlot = '';
-            this.isOpen = false;
-          } 
+          }
+          this.isOpen = false; 
         }
         )
     }
@@ -153,5 +153,18 @@ export class BookingPageComponent implements OnDestroy {
         !response.ok && this.toast.error('Something Went Wrong');
       }
       )
+  }
+
+  payWithWallet():void{
+    this.walletSub = this.userService.payWithWallet(this.orderId).subscribe(
+      (response)=>{
+        if(response.payment){
+          this.toast.success('Payment Successfull');
+          this.router.navigate(['/user/home']);
+        }else{
+          this.toast.warning(response.message); 
+        }   
+      }
+    )
   }
 }

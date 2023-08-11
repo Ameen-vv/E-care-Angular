@@ -11,7 +11,7 @@ import { UserService } from './core/services/user.service';
 import { HeroSectionComponent } from './shared/components/hero-section/hero-section.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
 import { DepSectionHomeComponent } from './shared/components/dep-section-home/dep-section-home.component';
-import { ProfileDetailsComponent } from './shared/components/profile-details/profile-details.component';
+import { ProfileDetailsComponent } from './pages/profile-details/profile-details.component';
 import {heroBellAlertSolid,heroCalendarSolid,heroPencilSquareSolid } from '@ng-icons/heroicons/solid';
 import { HistoryComponent } from './shared/components/history/history.component';
 import { SearchBarComponent } from './shared/components/search-bar/search-bar.component';
@@ -23,6 +23,9 @@ import { DoctorListComponent } from './pages/doctor-list/doctor-list.component';
 import { DoctorCardComponent } from './shared/components/doctor-card/doctor-card.component';
 import { DoctorDetailsComponent } from './pages/doctor-details/doctor-details.component';
 import { BookingPageComponent } from './pages/booking-page/booking-page.component';
+import { ErrorHandlerInterceptor } from './core/interceptors/error-handler.interceptor';
+import { AppointmentsListComponent } from './shared/components/appointments-list/appointments-list.component';
+import { WalletComponent } from './pages/wallet/wallet.component';
 
 
 
@@ -45,6 +48,8 @@ import { BookingPageComponent } from './pages/booking-page/booking-page.componen
     DoctorCardComponent,
     DoctorDetailsComponent,
     BookingPageComponent,
+    AppointmentsListComponent,
+    WalletComponent,
   ],
   imports: [
     CommonModule,
@@ -58,6 +63,11 @@ import { BookingPageComponent } from './pages/booking-page/booking-page.componen
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true,
+    },
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:ErrorHandlerInterceptor,
+      multi:true
     }
   ]
 })

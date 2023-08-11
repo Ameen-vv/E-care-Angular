@@ -28,3 +28,18 @@ export interface PaymentVerification{
     razorpay_payment_id:string;
     razorpay_signature:string;
 }
+
+export interface WalletModel{
+    _id:string;
+    userId:string;
+    transactions:TransactionModel[];
+    balance:number;
+}
+
+export interface TransactionModel{
+    _id:string;
+    amount:number;
+    date:Date;
+    transactionType:'credit'|'debit';
+}
+

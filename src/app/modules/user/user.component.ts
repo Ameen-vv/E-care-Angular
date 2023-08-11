@@ -23,8 +23,8 @@ export class UserComponent implements OnInit  {
       path:"/user/doctors"
     },
     {
-      name:"About Us",
-      path:"#"
+      name:"Wallet",
+      path:"/user/wallet"
     }
   ]
   constructor(private router : Router,private userService : UserService){

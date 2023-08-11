@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnDestroy } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -8,15 +8,17 @@ import { UserSignIn } from '../../core/models/userModels';
 import { UserService } from '../../core/services/user.service';
 import { Router } from '@angular/router';
 import { HotToastService } from '@ngneat/hot-toast';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.scss'],
 })
-export class SignInComponent {
+export class SignInComponent implements OnDestroy {
   authForm!: FormGroup;
   loader: boolean = false;
+  signInSub!:Subscription;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -30,9 +32,13 @@ export class SignInComponent {
     });
   }
 
+  ngOnDestroy(): void {
+      this.signInSub.unsubscribe();
+  }
+
   signIn(user: UserSignIn) {
     this.loader = true;
-    this.userService.userSignIn(user).subscribe(
+    this.signInSub = this.userService.userSignIn(user).subscribe(
       (response) => {
         if (response.ok) {
           this.router.navigate(['/user/home']);

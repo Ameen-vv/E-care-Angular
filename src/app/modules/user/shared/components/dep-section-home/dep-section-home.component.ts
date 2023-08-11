@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
+import { DepModel } from 'src/app/core/Models/CommonModels';
+import { UserService } from '../../../core/services/user.service';
+import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 interface Department {
   _id: string;
@@ -10,41 +14,33 @@ interface Department {
 @Component({
   selector: 'app-dep-section-home',
   templateUrl: './dep-section-home.component.html',
-  styleUrls: ['./dep-section-home.component.scss']
+  styleUrls: ['./dep-section-home.component.scss'],
 })
-export class DepSectionHomeComponent {
-  loading = false;
-  selectedDepartment: Department | undefined;
-  departments: Department[] = [];
-
+export class DepSectionHomeComponent implements OnInit,OnDestroy {
+  loading: boolean = false;
+  departments!: DepModel[];
+  selectedDep: number = 0;
+  private userService = inject(UserService);
+  private router = inject(Router);
+  getTopDepSub!: Subscription;
 
   ngOnInit(): void {
     this.loading = true;
-    setTimeout(() => {
-      this.departments = [
-        {
-          _id: '1',
-          name: 'Department 1',
-          imageUrl: 'image-url-1',
-          description: 'Description for Department 1'
-        },
-        {
-          _id: '2',
-          name: 'Department 2',
-          imageUrl: 'image-url-2',
-          description: 'Description for Department 2'
-        },
-        // ... Add more dummy data entries here
-      ];
-      this.selectedDepartment = this.departments[0];
+    this.getTopDepSub = this.userService.getTopDep().subscribe((response) => {
+      this.departments = response.data.slice(0, 5);
       this.loading = false;
-    }, 1000); // Simulated delay
+    });
   }
 
-  handleDepartmentClick(department: Department): void {
-    this.selectedDepartment = department;
+  ngOnDestroy(): void {
+      this.getTopDepSub?.unsubscribe();
+  }  
+
+  depChange(index: number): void {
+    this.selectedDep = index;
   }
 
-  
-
+  findDr(id:string):void{
+    this.router.navigate(['/user/doctors'],{queryParams:{depId:id}});
+  }
 }
