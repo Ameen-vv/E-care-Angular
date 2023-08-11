@@ -16,7 +16,7 @@ interface Department {
   templateUrl: './dep-section-home.component.html',
   styleUrls: ['./dep-section-home.component.scss'],
 })
-export class DepSectionHomeComponent implements OnInit {
+export class DepSectionHomeComponent implements OnInit,OnDestroy {
   loading: boolean = false;
   departments!: DepModel[];
   selectedDep: number = 0;
@@ -31,6 +31,10 @@ export class DepSectionHomeComponent implements OnInit {
       this.loading = false;
     });
   }
+
+  ngOnDestroy(): void {
+      this.getTopDepSub?.unsubscribe();
+  }  
 
   depChange(index: number): void {
     this.selectedDep = index;
