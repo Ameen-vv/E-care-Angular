@@ -11,6 +11,7 @@ import { DoctorDetailsComponent } from './pages/doctor-details/doctor-details.co
 import { BookingPageComponent } from './pages/booking-page/booking-page.component';
 import { logInCheckGuard } from './core/guards/logInCheck/log-in-check.guard';
 import { userCheckGuard } from './core/guards/authGuard/user-check.guard';
+import { WalletComponent } from './pages/wallet/wallet.component';
 
 
 const routes:Routes = [{
@@ -52,6 +53,11 @@ const routes:Routes = [{
     {
       path:'book',
       component:BookingPageComponent,
+      canActivate:[userCheckGuard]
+    },
+    {
+      path:'wallet',
+      component:WalletComponent,
       canActivate:[userCheckGuard]
     }
   ]

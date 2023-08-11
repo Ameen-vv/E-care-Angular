@@ -25,6 +25,7 @@ import { DoctorDetailsComponent } from './pages/doctor-details/doctor-details.co
 import { BookingPageComponent } from './pages/booking-page/booking-page.component';
 import { ErrorHandlerInterceptor } from './core/interceptors/error-handler.interceptor';
 import { AppointmentsListComponent } from './shared/components/appointments-list/appointments-list.component';
+import { WalletComponent } from './pages/wallet/wallet.component';
 
 
 
@@ -48,6 +49,7 @@ import { AppointmentsListComponent } from './shared/components/appointments-list
     DoctorDetailsComponent,
     BookingPageComponent,
     AppointmentsListComponent,
+    WalletComponent,
   ],
   imports: [
     CommonModule,

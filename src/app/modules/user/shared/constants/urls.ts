@@ -13,3 +13,6 @@ export const cancelAppointmentUrl:string = `${BaseUrl}cancelAppointment/`;
 export const getHistoryUrl:string = `${BaseUrl}getAppointmentHistory`;
 export const getUserUrl:string = `${BaseUrl}getUserDetails`;
 export const getAppointmentsUrl:string = `${BaseUrl}getAppointments`;
+export const getWalletUrl:string = `${BaseUrl}getWallet`;
+export const payWithWalletUrl:string = `${BaseUrl}payWithWallet/`;
+export const getTopDepUrl:string = `${BaseUrl}getTopDep`;
