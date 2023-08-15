@@ -43,5 +43,13 @@ export class UserComponent implements OnInit  {
       this.router.navigate(['/user/home'])
     }
   }
+
+  goToLogIn():void{
+    this.router.navigate(['/user/signIn']);
+  }
+
+  goToRegister():void{
+    this.router.navigate(['/user/register']);
+  }
   
 }

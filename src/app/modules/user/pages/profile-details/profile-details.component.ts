@@ -76,6 +76,6 @@ export class ProfileDetailsComponent implements OnInit,OnDestroy {
 
   logOut():void{
     localStorage.removeItem('token');
-    this.router.navigate(['/user/home'])
+    this.router.navigate(['/user/home']);
   }
 }

@@ -26,6 +26,7 @@ import { BookingPageComponent } from './pages/booking-page/booking-page.componen
 import { ErrorHandlerInterceptor } from './core/interceptors/error-handler.interceptor';
 import { AppointmentsListComponent } from './shared/components/appointments-list/appointments-list.component';
 import { WalletComponent } from './pages/wallet/wallet.component';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 
 
@@ -55,7 +56,8 @@ import { WalletComponent } from './pages/wallet/wallet.component';
     CommonModule,
     UserRoutingModule,
     SharedModule,
-    NgIconsModule.withIcons({heroBellAlertSolid,heroCalendarSolid,heroPencilSquareSolid})
+    NgIconsModule.withIcons({heroBellAlertSolid,heroCalendarSolid,heroPencilSquareSolid}),
+    SweetAlert2Module
   ],
   providers:[
     UserService,

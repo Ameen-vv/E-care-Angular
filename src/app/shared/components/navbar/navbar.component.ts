@@ -24,7 +24,7 @@ export class NavbarComponent {
   };
 
   clickRegister():void{
-    this.logInButton.emit();
+    this.registerButton.emit();
   }
 
   goToProfile():void{

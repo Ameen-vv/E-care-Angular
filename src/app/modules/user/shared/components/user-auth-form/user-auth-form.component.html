@@ -40,10 +40,13 @@
                     <input id="dob" name="dob" type="date" autocomplete="dob" required
                         class="w-full px-4 py-2 mt-2 text-gray-900 bg-gray-50 border rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
                         formControlName="dob">
-                    <div *ngIf="formTemplate.get('dob')?.invalid && formTemplate.get('dob')?.touched"
+                    <div *ngIf="formTemplate.get('dob')?.hasError('required') && formTemplate.get('dob')?.touched"
                         class="text-sm text-red-600">
                         Enter Valid Date
                     </div>
+                    <div *ngIf="formTemplate.get('dob')?.hasError('minAge')" class="text-sm text-red-600">
+                        User should be at least 15 years old.
+                      </div>
                 </div>
                 <div *ngIf="formType === 'signUp'">
                     <label for="email" class=" text-sm">Address</label>

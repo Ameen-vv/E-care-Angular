@@ -1,5 +1,5 @@
 <div class="container min-h-screen">
-  <app-navbar [navList]="navList" [userLogged]="userCheck()" (navigateProfile)="goToProfile()"></app-navbar>
+  <app-navbar [navList]="navList" [userLogged]="userCheck()" (navigateProfile)="goToProfile()" (logInButton)="goToLogIn()" (registerButton)="goToRegister()"></app-navbar>
   <router-outlet></router-outlet>
   <app-footer></app-footer>
 </div>

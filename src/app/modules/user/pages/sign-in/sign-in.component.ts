@@ -33,7 +33,7 @@ export class SignInComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-      this.signInSub.unsubscribe();
+      this.signInSub?.unsubscribe();
   }
 
   signIn(user: UserSignIn) {
