@@ -1,0 +1,13 @@
+<div class="overflow-x-auto">
+    <table class="w-full border rounded-lg ">
+      <thead class="bg-gray-100">
+        <tr>
+          <ng-content select="[header-cell]"></ng-content>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-300">
+        <ng-content select="[data-row]"></ng-content>
+      </tbody>
+    </table>
+  </div>
+  
