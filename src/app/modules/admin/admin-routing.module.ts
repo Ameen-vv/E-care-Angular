@@ -4,6 +4,7 @@ import { AdminComponent } from './admin.component';
 import { UserTableComponent } from './pages/user-table/user-table.component';
 import { AdminLogInComponent } from './pages/admin-log-in/admin-log-in.component';
 import { DoctorTableComponent } from './pages/doctor-table/doctor-table.component';
+import { NewDoctorsComponent } from './pages/new-doctors/new-doctors.component';
 
 
 const routes:Routes = [
@@ -22,6 +23,10 @@ const routes:Routes = [
       {
         path:'doctors',
         component:DoctorTableComponent
+      },
+      {
+        path:'newDoctors',
+        component:NewDoctorsComponent
       }
     ]
   }

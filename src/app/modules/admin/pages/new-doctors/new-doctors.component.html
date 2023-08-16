@@ -1,6 +1,6 @@
 <div class="container">
-    <div class="w-full p-2">
-        <h1>Doctors</h1>
+    <div class="w-full p-2 text-textBlue text-xl font-bold">
+        <h1>New Doctors</h1>
     </div>
     <app-data-table>
         <ng-container header-cell>
@@ -26,18 +26,16 @@
                 </td>
                 <td class="px-4 py-2">
                     <button
-                    *ngIf="!doctor.block"
-                    class="bg-red-600 p-1 px-3 rounded text-white hover:bg-red-700"
-                    (click)="blockDoc(doctor._id)"
+                    class="bg-green-600 p-1 px-3 rounded text-white hover:bg-green-700 me-2"
+                    (click)="approveDoc(doctor._id)"
                   >
-                    block
+                    approve
                   </button>
                   <button
-                    *ngIf="doctor.block"
-                    class="bg-green-600 p-1 px-3 rounded text-white hover:bg-green-700"
-                    (click)="unBlockDoc(doctor._id)"
+                    class="bg-red-600 p-1 px-3 rounded text-white hover:bg-red-700"
+                    (click)="rejectDoc(doctor._id)"
                   >
-                    unblock
+                    reject
                   </button>
                 </td>
             </tr>

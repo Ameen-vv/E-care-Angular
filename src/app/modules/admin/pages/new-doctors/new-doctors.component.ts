@@ -13,7 +13,7 @@ export class NewDoctorsComponent implements OnInit {
   constructor(private adminService : AdminService){};
 
   ngOnInit(): void {
-      
+      this.getDoctors();
   }
 
   getDoctors():void{
