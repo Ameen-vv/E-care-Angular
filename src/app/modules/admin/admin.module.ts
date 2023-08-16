@@ -12,6 +12,7 @@ import { TokenInterceptor } from './core/interceptors/tokenInterceptor/token.int
 import { AdminService } from './core/services/admin.service';
 import { DoctorTableComponent } from './pages/doctor-table/doctor-table.component';
 import { NewDoctorsComponent } from './pages/new-doctors/new-doctors.component';
+import { DepartmentTableComponent } from './pages/department-table/department-table.component';
 
 
 
@@ -23,7 +24,8 @@ import { NewDoctorsComponent } from './pages/new-doctors/new-doctors.component';
     UserTableComponent,
     AdminLogInComponent,
     DoctorTableComponent,
-    NewDoctorsComponent
+    NewDoctorsComponent,
+    DepartmentTableComponent
   ],
   imports: [
     CommonModule,

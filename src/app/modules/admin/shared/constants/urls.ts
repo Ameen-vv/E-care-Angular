@@ -10,4 +10,7 @@ export const unBlockDocUrl:string = `${BaseUrl}unBlockDoctor/`;
 export const newDoctorsUrl:string = `${BaseUrl}getNewDoctors`;
 export const approveDocUrl:string = `${BaseUrl}approve/`;
 export const rejectDocUrl:string = `${BaseUrl}rejectDoc/`;
+export const getDepUrl:string = `${BaseUrl}departments`;
+export const unListDepUrl:string = `${BaseUrl}unListDepartment/`;
+export const listDepUrl:string = `${BaseUrl}listDepartment/`;
   

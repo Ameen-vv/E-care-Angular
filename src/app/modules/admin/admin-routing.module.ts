@@ -5,6 +5,7 @@ import { UserTableComponent } from './pages/user-table/user-table.component';
 import { AdminLogInComponent } from './pages/admin-log-in/admin-log-in.component';
 import { DoctorTableComponent } from './pages/doctor-table/doctor-table.component';
 import { NewDoctorsComponent } from './pages/new-doctors/new-doctors.component';
+import { DepartmentTableComponent } from './pages/department-table/department-table.component';
 
 
 const routes:Routes = [
@@ -27,6 +28,10 @@ const routes:Routes = [
       {
         path:'newDoctors',
         component:NewDoctorsComponent
+      },
+      {
+        path:'departments',
+        component:DepartmentTableComponent
       }
     ]
   }

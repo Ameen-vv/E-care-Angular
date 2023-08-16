@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, ObservedValueOf, take } from 'rxjs';
-import { adminLogInUrl, approveDocUrl, blockDocUrl, blockUserUrl, getDoctorsUrl, getUsersUrl, newDoctorsUrl, rejectDocUrl, unBlockDocUrl, unBlockUserUrl } from '../../shared/constants/urls';
-import { DoctorModel, UserModel } from 'src/app/core/Models/CommonModels';
+import { adminLogInUrl, approveDocUrl, blockDocUrl, blockUserUrl, getDepUrl, getDoctorsUrl, getUsersUrl, listDepUrl, newDoctorsUrl, rejectDocUrl, unBlockDocUrl, unBlockUserUrl, unListDepUrl } from '../../shared/constants/urls';
+import { DepModel, DoctorModel, UserModel } from 'src/app/core/Models/CommonModels';
 
 
 @Injectable({
@@ -45,11 +45,23 @@ export class AdminService {
   }
 
   approveDoc(id:string):Observable<{ok:boolean}>{
-    return this.http.get<{ok:boolean}>(`${approveDocUrl + id}`);
+    return this.http.get<{ok:boolean}>(`${approveDocUrl + id}`).pipe(take(1));
   }
 
   rejectDoc(id:string):Observable<{ok:boolean}>{
-    return this.http.get<{ok:boolean}>(`${rejectDocUrl + id}`);
+    return this.http.get<{ok:boolean}>(`${rejectDocUrl + id}`).pipe(take(1));
+  }
+  
+  getDep():Observable<{data:DepModel[]}>{
+    return this.http.get<{data:DepModel[]}>(getDepUrl).pipe(take(1));
+  }
+
+  listDep(id:string):Observable<{ok:boolean}>{
+    return this.http.get<{ok:boolean}>(`${listDepUrl + id}`).pipe(take(1));
+  }
+
+  unListDep(id:string):Observable<{ok:boolean}>{
+    return this.http.get<{ok:boolean}>(`${unListDepUrl + id}`).pipe(take(1));
   }
 
   checkToken():boolean {
