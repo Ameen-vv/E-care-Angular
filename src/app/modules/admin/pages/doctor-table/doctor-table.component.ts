@@ -22,4 +22,16 @@ export class DoctorTableComponent implements OnInit {
       this.doctors = response.data;
     })
   }
+
+  blockDoc(id:string):void{
+    this.adminService.blockDoc(id).subscribe(
+      ()=>this.getDoctors()
+    )
+  }
+
+  unBlockDoc(id:string):void{
+    this.adminService.unBlockDoc(id).subscribe(
+      ()=>this.getDoctors()
+    )
+  }
 }

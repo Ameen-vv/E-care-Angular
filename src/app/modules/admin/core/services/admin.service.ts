@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, take } from 'rxjs';
-import { adminLogInUrl, blockUserUrl, getDoctorsUrl, getUsersUrl, unBlockUserUrl } from '../../shared/constants/urls';
+import { Observable, ObservedValueOf, take } from 'rxjs';
+import { adminLogInUrl, approveDocUrl, blockDocUrl, blockUserUrl, getDoctorsUrl, getUsersUrl, newDoctorsUrl, rejectDocUrl, unBlockDocUrl, unBlockUserUrl } from '../../shared/constants/urls';
 import { DoctorModel, UserModel } from 'src/app/core/Models/CommonModels';
 
 
@@ -30,6 +30,26 @@ export class AdminService {
 
   getDoctors():Observable<{data:DoctorModel[]}>{
     return this.http.get<{data:DoctorModel[]}>(getDoctorsUrl).pipe(take(1));
+  }
+
+  blockDoc(id:string):Observable<{ok:boolean}>{
+    return this.http.get<{ok:boolean}>(blockDocUrl + id).pipe(take(1));
+  }
+
+  unBlockDoc(id:string):Observable<{ok:boolean}>{
+    return this.http.get<{ok:boolean}>(unBlockDocUrl + id).pipe(take(1));
+  }
+
+  getNewDocs():Observable<{data:DoctorModel[]}>{
+    return this.http.get<{data:DoctorModel[]}>(newDoctorsUrl).pipe(take(1));
+  }
+
+  approveDoc(id:string):Observable<{ok:boolean}>{
+    return this.http.get<{ok:boolean}>(`${approveDocUrl + id}`);
+  }
+
+  rejectDoc(id:string):Observable<{ok:boolean}>{
+    return this.http.get<{ok:boolean}>(`${rejectDocUrl + id}`);
   }
 
   checkToken():boolean {

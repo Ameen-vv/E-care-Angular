@@ -11,6 +11,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './core/interceptors/tokenInterceptor/token.interceptor';
 import { AdminService } from './core/services/admin.service';
 import { DoctorTableComponent } from './pages/doctor-table/doctor-table.component';
+import { NewDoctorsComponent } from './pages/new-doctors/new-doctors.component';
 
 
 
@@ -21,7 +22,8 @@ import { DoctorTableComponent } from './pages/doctor-table/doctor-table.componen
     DataTableComponent,
     UserTableComponent,
     AdminLogInComponent,
-    DoctorTableComponent
+    DoctorTableComponent,
+    NewDoctorsComponent
   ],
   imports: [
     CommonModule,
