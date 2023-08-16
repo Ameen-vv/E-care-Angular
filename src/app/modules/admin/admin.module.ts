@@ -7,6 +7,10 @@ import { DataTableComponent } from './shared/components/data-table/data-table.co
 import { UserTableComponent } from './pages/user-table/user-table.component';
 import { AdminLogInComponent } from './pages/admin-log-in/admin-log-in.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './core/interceptors/tokenInterceptor/token.interceptor';
+import { AdminService } from './core/services/admin.service';
+import { DoctorTableComponent } from './pages/doctor-table/doctor-table.component';
 
 
 
@@ -16,12 +20,21 @@ import { SharedModule } from 'src/app/shared/shared.module';
     AdminNavComponent,
     DataTableComponent,
     UserTableComponent,
-    AdminLogInComponent
+    AdminLogInComponent,
+    DoctorTableComponent
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     SharedModule
+  ],
+  providers:[
+    AdminService,
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:TokenInterceptor,
+      multi:true
+    }
   ]
 })
 export class AdminModule { }
