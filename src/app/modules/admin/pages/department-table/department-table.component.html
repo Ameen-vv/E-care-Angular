@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="w-full p-2 text-textBlue text-xl font-bold">
+        <h1>Doctors</h1>
+    </div>
+    <app-data-table>
+        <ng-container header-cell>
+            <th class="px-4 py-2 text-left font-semibold">No</th>
+            <th class="px-4 py-2 text-left font-semibold">Name</th>
+            <th class="px-4 py-2 text-left font-semibold">Common Diseases</th>
+            <th class="px-4 py-2 text-left font-semibold">Image</th>
+            <th class="px-4 py-2 text-left font-semibold">Action</th>
+           
+        </ng-container>
+        <ng-container data-row>
+            <tr class="hover:bg-gray-100" *ngFor="let department of departments; let i = index">
+                <td class="px-4 py-2">{{i + 1}}</td>
+                <td class="px-4 py-2">{{department.name}}</td>
+                <td class="px-4 py-2">
+                    <p *ngFor="let disease of department.commonDiseases">
+                        {{ disease }}
+                    </p>
+                </td>
+                <td class="px-4 py-2 ">
+                    <a [href]="department.imageUrl" target="_blank">
+                        <img [src]="department.imageUrl" alt="" class="h-10 w-10 cursor-pointer">
+                    </a>
+                </td>
+                <td class="px-4 py-2">
+                    <button
+                    *ngIf="department.list"
+                    class="bg-red-600 p-1 px-3 rounded text-white hover:bg-red-700"
+                    (click)="unListDep(department._id)"
+                  >
+                    UnList
+                  </button>
+                  <button
+                    *ngIf="!department.list"
+                    class="bg-green-600 p-1 px-3 rounded text-white hover:bg-green-700"
+                    (click)="listDep(department._id)"
+                  >
+                    List
+                  </button>
+                </td>
+            </tr>
+        </ng-container>
+    </app-data-table>
+</div>
