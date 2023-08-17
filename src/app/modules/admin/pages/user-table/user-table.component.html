@@ -11,7 +11,7 @@
       <th class="px-4 py-2 text-left font-semibold">Actions</th>
     </ng-container>
     <ng-container data-row>
-      <tr class="hover:bg-gray-100" *ngFor="let user of users; let i = index">
+      <tr class="hover:bg-gray-100" *ngFor="let user of users$ | async; let i = index">
         <td class="px-4 py-3">{{ i + 1 }}</td>
         <td class="px-4 py-3">{{ user.fullName }}</td>
         <td class="px-4 py-3">{{ user.email }}</td>
