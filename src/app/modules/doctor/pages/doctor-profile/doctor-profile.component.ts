@@ -1,6 +1,8 @@
 import { Component,OnInit } from '@angular/core';
 import { AppointmentModel, DoctorModel } from 'src/app/core/Models/CommonModels';
 import { DoctorService } from '../../core/services/doctor.service';
+import { Subscription } from 'rxjs';
+import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
   selector: 'app-doctor-profile',
@@ -12,8 +14,11 @@ export class DoctorProfileComponent implements OnInit {
   page: 'appointments' | 'timings' = 'appointments';
   doctor!:DoctorModel;
   appointments:AppointmentModel[] = [];
+  cancelSub!:Subscription;
+  visitedSub!:Subscription;
+  unVisitedSub!:Subscription;
 
-  constructor(private docService : DoctorService){};
+  constructor(private docService : DoctorService,private toast : HotToastService){};
 
   ngOnInit(): void {
     this.getProfile();
@@ -45,7 +50,32 @@ export class DoctorProfileComponent implements OnInit {
     this.page = page;
   }
 
-  cancelAppointment(appointmentId: number) {
-    // Implement cancel appointment functionality
+  cancelAppointment(id: string) {
+    this.cancelSub = this.docService.cancelAppointment(id).subscribe(
+      (response)=>{
+        response.ok && this.toast.success('Done');
+        response.ok && this.getAppointments();
+      }
+     ) 
   }
+
+  visitAppointment(id:string){
+    this.visitedSub = this.docService.visitAppointment(id).subscribe(
+      (response)=>{
+        response.ok && this.toast.success("Done");
+        response.ok && this.getAppointments();
+      }
+    )
+  }
+  
+  unVisitAppointment(id:string){
+    this.visitedSub = this.docService.unVisitAppointment(id).subscribe(
+      (response)=>{
+        response.ok && this.toast.success("Done");
+        response.ok && this.getAppointments();
+      }
+    )
+  }
+
+
 }

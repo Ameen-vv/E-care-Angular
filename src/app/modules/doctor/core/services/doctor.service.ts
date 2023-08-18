@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, take } from 'rxjs';
 import { AppointmentModel, DepModel, DoctorModel } from 'src/app/core/Models/CommonModels';
-import { appointmentsUrl, docProfileUrl, docSignInUrl, docSignUpUrl, getDepUrl } from '../../shared/constants/urls';
+import { AppntCancelUrl, AppntUnVisitedUrl, AppntVisitedUrl, appointmentsUrl, docProfileUrl, docSignInUrl, docSignUpUrl, getDepUrl } from '../../shared/constants/urls';
 import { IDocSignUp } from '../models/Doc.models';
 
 @Injectable({
@@ -31,4 +31,17 @@ export class DoctorService {
   getProfile():Observable<{data:DoctorModel}>{
     return this.http.get<{data:DoctorModel}>(docProfileUrl).pipe(take(1));
   }
+
+  visitAppointment(id:string):Observable<{ok:boolean}>{
+    return this.http.get<{ok:boolean}>(`${AppntVisitedUrl + id}`);
+  }
+
+  unVisitAppointment(id:string):Observable<{ok:boolean}>{
+    return this.http.get<{ok:boolean}>(`${AppntUnVisitedUrl + id}`);
+  }
+
+  cancelAppointment(id:string):Observable<{ok:boolean}>{
+    return this.http.get<{ok:boolean}>(`${AppntCancelUrl + id}`);
+  }
+
 }

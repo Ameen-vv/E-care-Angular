@@ -7,22 +7,22 @@ import { AppointmentModel } from 'src/app/core/Models/CommonModels';
   styleUrls: ['./appointment-list.component.scss']
 })
 export class AppointmentListComponent {
-  @Output() visited = new EventEmitter();
-  @Output() unVisited = new EventEmitter();
-  @Output() cancel = new EventEmitter();
+  @Output() onVisited = new EventEmitter();
+  @Output() onUnVisited = new EventEmitter();
+  @Output() onCancel = new EventEmitter();
   @Input() appointments!: AppointmentModel[];
 
   
 
   appointmentVisited(appointmentId: string): void {
-    this.visited.emit(appointmentId);
+    this.onVisited.emit(appointmentId);
   }
 
   appointmentUnVisited(appointmentId: string): void {
-    this.unVisited.emit(appointmentId);
+    this.onUnVisited.emit(appointmentId);
   }
 
   appointmentCancel(appointmentId: string): void {
-    this.cancel.emit(appointmentId);
+    this.onCancel.emit(appointmentId);
   }
 }
