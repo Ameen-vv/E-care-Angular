@@ -1,0 +1,37 @@
+<div class="flex w-full justify-start bg-gray-100 pt-4">
+    <h2 class="text-xl text-textBlue font-bold mb-4 ms-4">Your appointments</h2>
+  
+</div>
+<div *ngIf="appointments.length === 0; else appointmentsList">
+  <div class="flex flex-col items-center">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-20 w-20 text-gray-300 mb-4">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+    </svg>
+    <p class="text-lg leading-7 text-gray-500">You have no appointments scheduled.</p>
+  </div>
+</div>
+<ng-template #appointmentsList>
+  <div class="bg-gray-100 p-4 md:max-w-full mx-auto">
+    <div *ngFor="let appointment of appointments" class="mb-2 bg-white rounded-lg p-3 flex flex-col md:flex-row items-center justify-between">
+      <div class="flex-grow text-gray-600 text-sm flex">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6 mr-3">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"></path>
+        </svg>
+        <p class="text-textBlue">
+          <a class="font-semibold">{{ appointment.patientId.fullName }}</a> have booked an appointment on <a class="font-semibold">{{ appointment.date.toString() | slice : 0 : 10 }}</a> at slot <a class="font-semibold">{{ appointment.slot }}</a>
+        </p>
+      </div>
+      <div class="flex justify-center mt-2">
+        <button class="bg-green-500 hover:bg-green-600 text-white font-bold md:py-1 lg:py-2 px-2 lg:px-4 rounded mr-2 text-sm" (click)="appointmentVisited(appointment._id)">
+          Visited
+        </button>
+        <button class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold md:py-1 lg:py-2 px-2 lg:px-4 rounded mr-2 text-sm" (click)="appointmentUnVisited(appointment._id)">
+          Unvisited
+        </button>
+        <button class="bg-gray-500 hover:bg-gray-600 text-white font-bold md:py-1 lg:py-2 px-2 lg:px-4 rounded text-sm" (click)="appointmentCancel(appointment._id)">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+</ng-template>

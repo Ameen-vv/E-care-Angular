@@ -6,6 +6,12 @@ import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { StoreModule } from '@ngrx/store';
+import { userReducer } from './state/user/user.reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { UserEffects } from './state/user/user.effects';
+
+
 
 
 @NgModule({
@@ -19,7 +25,10 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     SharedModule,
     BrowserAnimationsModule,
     NoopAnimationsModule,
-    SweetAlert2Module.forRoot()
+    SweetAlert2Module.forRoot(),
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]) 
+
     
   ],
   providers: [],

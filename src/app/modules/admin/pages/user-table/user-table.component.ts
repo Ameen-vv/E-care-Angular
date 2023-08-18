@@ -1,6 +1,9 @@
 import { Component,OnInit } from '@angular/core';
 import { UserModel } from 'src/app/core/Models/CommonModels';
-import { AdminService } from '../../core/services/admin.service';
+import {Store } from '@ngrx/store'
+import { blockUser, loadUsers, unBlockUser } from 'src/app/state/user/user.actions';
+import * as Selectors from 'src/app/state/user/user.selectors';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-user-table',
@@ -9,32 +12,21 @@ import { AdminService } from '../../core/services/admin.service';
 })
 export class UserTableComponent implements OnInit{
   
-  users!:UserModel[];
+  users$:Observable<UserModel[]> = this.store.select(Selectors.getData)
   
-  constructor(private adminService : AdminService){};
+  constructor(private store : Store){};
 
   ngOnInit(): void {
-      this.getUsers();
-  }
-
-  getUsers():void{
-    this.adminService.getUsers().subscribe(
-      (response)=>{
-        this.users = response.data;
-      }
-    )
+      this.store.dispatch(loadUsers());      
   }
 
   blockUser(id:string):void{
-    this.adminService.blockUser(id).subscribe(()=>{
-      this.getUsers();
-    });
+    this.store.dispatch(blockUser({id}));
   }
 
   unBlockUser(id:string):void{
-    this.adminService.unBlockUser(id).subscribe(()=>{
-      this.getUsers();
-    })
+    this.store.dispatch(unBlockUser({id}));
   }
+
 
 }

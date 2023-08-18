@@ -13,6 +13,10 @@ import { AdminService } from './core/services/admin.service';
 import { DoctorTableComponent } from './pages/doctor-table/doctor-table.component';
 import { NewDoctorsComponent } from './pages/new-doctors/new-doctors.component';
 import { DepartmentTableComponent } from './pages/department-table/department-table.component';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { userReducer } from 'src/app/state/user/user.reducers';
+import { UserEffects } from 'src/app/state/user/user.effects';
 
 
 
@@ -30,7 +34,10 @@ import { DepartmentTableComponent } from './pages/department-table/department-ta
   imports: [
     CommonModule,
     AdminRoutingModule,
-    SharedModule
+    SharedModule,
+    StoreModule.forFeature('user',userReducer),
+    EffectsModule.forFeature([UserEffects])
+
   ],
   providers:[
     AdminService,
