@@ -10,6 +10,9 @@ import { DoctorProfileComponent } from './pages/doctor-profile/doctor-profile.co
 import { NgIconsModule } from '@ng-icons/core';
 import {heroBellAlertSolid,heroCalendarSolid,heroPencilSquareSolid } from '@ng-icons/heroicons/solid';
 import { AppointmentListComponent } from './shared/components/appointment-list/appointment-list.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './core/interceptors/token.interceptor';
+import { DoctorService } from './core/services/doctor.service';
 
 
 
@@ -27,6 +30,14 @@ import { AppointmentListComponent } from './shared/components/appointment-list/a
     DoctorRoutingModule,
     SharedModule,
     NgIconsModule.withIcons({heroBellAlertSolid,heroCalendarSolid,heroPencilSquareSolid})
+  ],
+  providers:[
+    DoctorService,
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:TokenInterceptor,
+      multi:true
+    }
   ]
 })
 export class DoctorModule { }

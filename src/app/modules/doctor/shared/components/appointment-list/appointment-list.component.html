@@ -1,9 +1,6 @@
-<h2 class="text-xl text-textBlue font-bold mb-4">Your appointments</h2>
-<div class="flex w-full justify-end bg-gray-100">
-  <div class="flex mt-2">
-    <input type="date" id="startDate" class="me-2 rounded-md border border-gray-300 p-2 ms-auto" [(ngModel)]="date"  />
-    <p class="ms-auto me-4 text-sm text-primary cursor-pointer my-auto" (click)="clearDate()">Clear All</p>
-  </div>
+<div class="flex w-full justify-start bg-gray-100 pt-4">
+    <h2 class="text-xl text-textBlue font-bold mb-4 ms-4">Your appointments</h2>
+  
 </div>
 <div *ngIf="appointments.length === 0; else appointmentsList">
   <div class="flex flex-col items-center">
@@ -21,7 +18,7 @@
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"></path>
         </svg>
         <p class="text-textBlue">
-          <a class="font-semibold">{{ appointment.patientId?.fullName }}</a> have booked an appointment on <a class="font-semibold">{{ appointment?.date.substring(0, 10) }}</a> at slot <a class="font-semibold">{{ appointment.slot }}</a>
+          <a class="font-semibold">{{ appointment.patientId.fullName }}</a> have booked an appointment on <a class="font-semibold">{{ appointment.date.toString() | slice : 0 : 10 }}</a> at slot <a class="font-semibold">{{ appointment.slot }}</a>
         </p>
       </div>
       <div class="flex justify-center mt-2">

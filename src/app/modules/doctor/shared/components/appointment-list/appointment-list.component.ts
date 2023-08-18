@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component,Output,Input,EventEmitter } from '@angular/core';
+import { AppointmentModel } from 'src/app/core/Models/CommonModels';
 
 @Component({
   selector: 'app-appointment-list',
@@ -6,28 +7,22 @@ import { Component } from '@angular/core';
   styleUrls: ['./appointment-list.component.scss']
 })
 export class AppointmentListComponent {
-  date: string = '';
-  appointments: any[] = [];  // Replace with your actual appointment data type
+  @Output() visited = new EventEmitter();
+  @Output() unVisited = new EventEmitter();
+  @Output() cancel = new EventEmitter();
+  @Input() appointments!: AppointmentModel[];
 
-  setDate(newDate: string): void {
-    this.date = newDate;
-    // Implement your logic to filter appointments based on the selected date
-  }
-
-  clearDate(): void {
-    this.date = '';
-    // Implement your logic to clear the date filter
-  }
+  
 
   appointmentVisited(appointmentId: string): void {
-    // Implement your logic for marking the appointment as visited
+    this.visited.emit(appointmentId);
   }
 
   appointmentUnVisited(appointmentId: string): void {
-    // Implement your logic for marking the appointment as unvisited
+    this.unVisited.emit(appointmentId);
   }
 
   appointmentCancel(appointmentId: string): void {
-    // Implement your logic for canceling the appointment
+    this.cancel.emit(appointmentId);
   }
 }

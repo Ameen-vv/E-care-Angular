@@ -1,37 +1,47 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
+import { AppointmentModel, DoctorModel } from 'src/app/core/Models/CommonModels';
+import { DoctorService } from '../../core/services/doctor.service';
 
 @Component({
   selector: 'app-doctor-profile',
   templateUrl: './doctor-profile.component.html',
   styleUrls: ['./doctor-profile.component.scss']
 })
-export class DoctorProfileComponent {
+export class DoctorProfileComponent implements OnInit {
   loader = false;
-  page = 'appointments'; // or 'history'
+  page: 'appointments' | 'timings' = 'appointments';
+  doctor!:DoctorModel;
+  appointments:AppointmentModel[] = [];
 
-  user = {
-    fullName: 'John Doe',
-    profilePic: 'https://conferenceoeh.com/wp-content/uploads/profile-pic-dummy.png',
-    address: '123 Main St, City',
-    email: 'john@example.com',
-    phone: '123-456-7890'
-  };
+  constructor(private docService : DoctorService){};
 
-  history = [
-    { id: 1, title: 'Appointment 1', date: '2023-08-18' },
-    { id: 2, title: 'Appointment 2', date: '2023-08-19' }
-  ];
+  ngOnInit(): void {
+    this.getProfile();
+    this.getAppointments();
+  } 
+  
+  getProfile():void{
+    this.docService.getProfile().subscribe(
+      (response)=>{
+        this.doctor = response.data;
+      }
+    )
+  }
 
-  appointments = [
-    { id: 1, title: 'Appointment 3', date: '2023-08-20' },
-    { id: 2, title: 'Appointment 4', date: '2023-08-21' }
-  ];
+  getAppointments():void{
+    this.docService.getAppointments().subscribe(
+      (response)=>{
+        this.appointments = response.data;
+      }
+    )
+  }
+
 
   logOut() {
     // Implement logout functionality
   }
 
-  changePage(page: string) {
+  changePage(page: 'appointments' | 'timings') {
     this.page = page;
   }
 
