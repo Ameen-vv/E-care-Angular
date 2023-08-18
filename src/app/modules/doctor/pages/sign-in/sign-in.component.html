@@ -1,1 +1,6 @@
-<p>sign-in works!</p>
+<div class="min-h-screen flex justify-center items-center bg-gray-100 bg-bgImage2 bg-cover">
+    <div class="max-w-md w-full p-6 rounded-lg shadow-xl bg-white">
+        <h2 class="text-2xl font-semibold mb-4 text-center text-textBlue">Doctor Sign In</h2>
+        <app-doctor-auth-form formType="signIn" [doctorForm]="signInForm" (submitForm)="signIn($event)"  ></app-doctor-auth-form>
+    </div>
+</div>

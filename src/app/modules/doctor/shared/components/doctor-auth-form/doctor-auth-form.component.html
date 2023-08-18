@@ -3,7 +3,7 @@
   class="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2"
   (ngSubmit)="onSubmit()"
 >
-  <div class="col-span-1 md:col-span-2">
+  <div class="col-span-1 md:col-span-2" *ngIf="formType === 'signUp'">
     <label for="doctorFullName" class="block text-sm font-medium text-gray-700">Full Name</label>
     <input type="text" id="doctorFullName" formControlName="doctorFullName" class="mt-1 block w-full border-gray-500 bg-gray-100 p-2 rounded-md shadow-sm  sm:text-sm" />
     <div
@@ -14,7 +14,7 @@
     </div>
   </div>
 
-  <div class="col-span-1 md:col-span-2">
+  <div class="col-span-1 md:col-span-2" *ngIf="formType === 'signUp'">
     <label for="doctorPhone" class="block text-sm font-medium text-gray-700">Phone number</label>
     <input type="text" id="doctorPhone" formControlName="doctorPhone" class="mt-1 block w-full bg-gray-100 p-2 border-gray-300 rounded-md shadow-sm focus:ring-mainColor focus:border-mainColor sm:text-sm" />
     <div
@@ -124,7 +124,7 @@
     </div>
   </div>
 
-  <div class="col-span-1">
+  <div class="col-span-1 md:col-span-2">
     <label for="doctorPassword" class="block text-sm font-medium text-gray-700">Password</label>
     <input
       type="password"
@@ -140,7 +140,7 @@
     </div>
   </div>
 
-  <div *ngIf="formType === 'signUp'" class="col-span-1">
+  <div *ngIf="formType === 'signUp'" class="col-span-1 md:col-span-2">
     <div>
       <label for="doctorConfirmPass" class="block text-sm font-medium text-gray-700">Confirm password</label>
       <input
@@ -159,18 +159,20 @@
     </div>
   </div>
 
-  <div class="col-span-1">
+  <div class="col-span-1 md:col-span-2">
     <button
       type="submit"
-      [disabled]="!doctorForm.valid"
-      class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-mainColor border border-transparent rounded-md shadow-sm hover:bg-mainColorFocus focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-mainColor"
+      [disabled]="!doctorForm.valid || loader"
+      class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-mainColor border border-transparent rounded-md shadow-sm hover:bg-secColor"
     >
-      <span>Submit</span>
+      <app-loader [size]="20" *ngIf="loader"></app-loader>
+      <span *ngIf="!loader" >Submit</span>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         class="w-5 h-5 rtl:-scale-x-100"
         viewBox="0 0 20 20"
         fill="currentColor"
+        *ngIf="!loader"
       >
         <path
           fill-rule="evenodd"

@@ -8,7 +8,8 @@ import {
 } from '@angular/forms';
 import { DepModel } from 'src/app/core/Models/CommonModels';
 import { DoctorService } from '../../core/services/doctor.service';
-import { FormDatModel } from '../../core/models/Doc.models';
+import { IDocSignUp, IFormDatModel } from '../../core/models/Doc.models';
+import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
   selector: 'app-sign-up',
@@ -18,10 +19,12 @@ import { FormDatModel } from '../../core/models/Doc.models';
 export class SignUpComponent implements OnInit {
   doctorForm: FormGroup;
   departments!: DepModel[];
+  loader:boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
-    private docService: DoctorService
+    private docService: DoctorService,
+    private toast: HotToastService,
   ) {
     this.doctorForm = this.formBuilder.group(
       {
@@ -82,13 +85,40 @@ export class SignUpComponent implements OnInit {
     }
   };
 
-  signUp(formData:FormDatModel) {
-    
-    const image:File = formData.image
+  signUp(formData:IFormDatModel) {
+  try{
+    this.loader = true;
+    const {data,image} = formData;
+    const imageData:File = image;
+    const user:IDocSignUp={
+      fullName:data.value.doctorFullName,
+      phone:data.value.doctorPhone,
+      email:data.value.doctorEmail,
+      dateOfBirth:data.value.doctorDateOfBirth,
+      address:data.value.doctorAddress,
+      hospital:data.value.doctorHospital,
+      qualification:data.value.doctorQualification,
+      password:data.value.doctorPassword,
+      department:data.value.doctorDepartment
+
+    }
     const reader = new FileReader();
-    reader.readAsDataURL(image);
+    reader.readAsDataURL(imageData);
     reader.onloadend = () => {
-      console.log(reader.result);
+      this.docService.docSignUp(user,reader.result as string).subscribe(
+        (response)=>{
+          if(response.ok){
+            this.toast.success('Registration success please wait for verification');
+          }else{
+            this.toast.error(response.message);
+          }
+          this.loader=false;
+        },
+        ()=>this.loader=false
+      )
     };
-  }
+    }catch(err){
+      this.loader=false;
+    }
+  } 
 }

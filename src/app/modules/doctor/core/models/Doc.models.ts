@@ -1,6 +1,6 @@
 import { FormGroup } from "@angular/forms";
 
-export interface DocSignUp{
+export interface IDocSignUp{
     fullName:string;
     phone:string;
     email:string;
@@ -10,11 +10,10 @@ export interface DocSignUp{
     hospital:string;
     password:string;
     department:string;
-    certificate:File
 
 }
 
-export interface FormDatModel{
+export interface IFormDatModel{
     data:FormGroup,
     image:File
 }

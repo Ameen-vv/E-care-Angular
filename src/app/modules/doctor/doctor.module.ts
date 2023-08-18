@@ -6,6 +6,10 @@ import { DoctorAuthFormComponent } from './shared/components/doctor-auth-form/do
 import { SharedModule } from 'src/app/shared/shared.module';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
+import { DoctorProfileComponent } from './pages/doctor-profile/doctor-profile.component';
+import { NgIconsModule } from '@ng-icons/core';
+import {heroBellAlertSolid,heroCalendarSolid,heroPencilSquareSolid } from '@ng-icons/heroicons/solid';
+import { AppointmentListComponent } from './shared/components/appointment-list/appointment-list.component';
 
 
 
@@ -14,12 +18,15 @@ import { SignInComponent } from './pages/sign-in/sign-in.component';
     DoctorComponent,
     DoctorAuthFormComponent,
     SignUpComponent,
-    SignInComponent
+    SignInComponent,
+    DoctorProfileComponent,
+    AppointmentListComponent
   ],
   imports: [
     CommonModule,
     DoctorRoutingModule,
-    SharedModule
+    SharedModule,
+    NgIconsModule.withIcons({heroBellAlertSolid,heroCalendarSolid,heroPencilSquareSolid})
   ]
 })
 export class DoctorModule { }
