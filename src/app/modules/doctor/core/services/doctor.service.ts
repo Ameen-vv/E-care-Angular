@@ -52,4 +52,8 @@ export class DoctorService {
     return this.http.post<{ok:boolean,message:string}>(delTimeUrl,{data:time});
   }
 
+  tokenCheck():boolean{
+   return localStorage.getItem('doctorToken') ? true : false;
+  }
+
 }

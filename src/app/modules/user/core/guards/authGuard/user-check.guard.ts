@@ -14,7 +14,5 @@ export const userCheckGuard: CanActivateFn = (route, state) => {
     router.navigate(['/user/signIn']);
     toast.warning('Please Log In');
     return false;
-  }
-  
-  return true;
+  }  
 };
