@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, take } from 'rxjs';
-import { AppointmentModel, DepModel, DoctorModel } from 'src/app/core/Models/CommonModels';
-import { AppntCancelUrl, AppntUnVisitedUrl, AppntVisitedUrl, appointmentsUrl, docProfileUrl, docSignInUrl, docSignUpUrl, getDepUrl } from '../../shared/constants/urls';
+import { AppointmentModel, DepModel, DocTimings, DoctorModel } from 'src/app/core/Models/CommonModels';
+import { AppntCancelUrl, AppntUnVisitedUrl, AppntVisitedUrl, addTimeUrl, appointmentsUrl, delTimeUrl, docProfileUrl, docSignInUrl, docSignUpUrl, getDepUrl } from '../../shared/constants/urls';
 import { IDocSignUp } from '../models/Doc.models';
 
 @Injectable({
@@ -42,6 +42,14 @@ export class DoctorService {
 
   cancelAppointment(id:string):Observable<{ok:boolean}>{
     return this.http.get<{ok:boolean}>(`${AppntCancelUrl + id}`);
+  }
+
+  addTime(time:DocTimings):Observable<{ok:boolean,message:string}>{
+    return this.http.post<{ok:boolean,message:string}>(addTimeUrl,{data:time});
+  }
+
+  deleteTime(time:DocTimings):Observable<{ok:boolean,message:string}>{
+    return this.http.post<{ok:boolean,message:string}>(delTimeUrl,{data:time});
   }
 
 }

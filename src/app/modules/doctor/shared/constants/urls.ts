@@ -8,3 +8,5 @@ export const docProfileUrl:string = `${BaseUrl}getDocDetails`;
 export const AppntVisitedUrl:string = `${BaseUrl}visitedAppointment/`;
 export const AppntUnVisitedUrl:string = `${BaseUrl}UnVisitedAppointment/`;
 export const AppntCancelUrl:string = `${BaseUrl}cancelAppointment/`;
+export const addTimeUrl:string = `${BaseUrl}editTime`;
+export const delTimeUrl:string = `${BaseUrl}deleteSlot`;

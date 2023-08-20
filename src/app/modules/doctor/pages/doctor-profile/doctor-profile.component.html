@@ -84,7 +84,9 @@
         (onVisited)="visitAppointment($event)"
         (onUnVisited)="unVisitAppointment($event)"
         (onCancel)="cancelAppointment($event)"
+        *ngIf="page === 'appointments'"
       ></app-appointment-list>
+      <app-doctor-timings [timings]="doctor.timings" (onFormSubmit)="addTime($event)" (onSlotDel)="delTime($event)" *ngIf="page === 'timings'"></app-doctor-timings>
     </div>
   </div>
 </div>

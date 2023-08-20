@@ -13,6 +13,8 @@ import { AppointmentListComponent } from './shared/components/appointment-list/a
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './core/interceptors/token.interceptor';
 import { DoctorService } from './core/services/doctor.service';
+import { DoctorTimingsComponent } from './shared/components/doctor-timings/doctor-timings.component';
+import { ErrorHandlerInterceptor } from './core/interceptors/error-handler.interceptor';
 
 
 
@@ -23,7 +25,8 @@ import { DoctorService } from './core/services/doctor.service';
     SignUpComponent,
     SignInComponent,
     DoctorProfileComponent,
-    AppointmentListComponent
+    AppointmentListComponent,
+    DoctorTimingsComponent
   ],
   imports: [
     CommonModule,
@@ -36,6 +39,11 @@ import { DoctorService } from './core/services/doctor.service';
     {
       provide:HTTP_INTERCEPTORS,
       useClass:TokenInterceptor,
+      multi:true
+    },
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:ErrorHandlerInterceptor,
       multi:true
     }
   ]
