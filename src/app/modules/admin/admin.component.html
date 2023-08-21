@@ -1,4 +1,4 @@
-<app-admin-nav>
+<app-admin-nav [page]="page" (onNavigate)="onNavigate($event)">
   <div class="grow">
       <router-outlet></router-outlet>
   </div>  

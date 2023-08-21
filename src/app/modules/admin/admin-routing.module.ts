@@ -6,6 +6,7 @@ import { AdminLogInComponent } from './pages/admin-log-in/admin-log-in.component
 import { DoctorTableComponent } from './pages/doctor-table/doctor-table.component';
 import { NewDoctorsComponent } from './pages/new-doctors/new-doctors.component';
 import { DepartmentTableComponent } from './pages/department-table/department-table.component';
+import { AddDepComponent } from './pages/add-dep/add-dep.component';
 
 
 const routes:Routes = [
@@ -32,6 +33,10 @@ const routes:Routes = [
       {
         path:'departments',
         component:DepartmentTableComponent
+      },
+      {
+        path:'addDep',
+        component:AddDepComponent  
       }
     ]
   }

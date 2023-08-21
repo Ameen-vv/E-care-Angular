@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, ObservedValueOf, take } from 'rxjs';
-import { adminLogInUrl, approveDocUrl, blockDocUrl, blockUserUrl, getDepUrl, getDoctorsUrl, getUsersUrl, listDepUrl, newDoctorsUrl, rejectDocUrl, unBlockDocUrl, unBlockUserUrl, unListDepUrl } from '../../shared/constants/urls';
+import { addDepUrl, adminLogInUrl, approveDocUrl, blockDocUrl, blockUserUrl, getDepUrl, getDoctorsUrl, getUsersUrl, listDepUrl, newDoctorsUrl, rejectDocUrl, unBlockDocUrl, unBlockUserUrl, unListDepUrl } from '../../shared/constants/urls';
 import { DepModel, DoctorModel, UserModel } from 'src/app/core/Models/CommonModels';
+import { IAddDep } from '../models/interfaces';
 
 
 @Injectable({
@@ -66,6 +67,10 @@ export class AdminService {
 
   checkToken():boolean {
     return localStorage.getItem('adminToken') ? true : false ;
+  }
+
+  addDep(depData:IAddDep):Observable<{ok:boolean,message:string}>{
+    return this.http.post<{ok:boolean,message:string}>(addDepUrl,depData);
   }
 
 }

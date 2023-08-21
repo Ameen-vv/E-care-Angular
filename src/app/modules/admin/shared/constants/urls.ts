@@ -13,4 +13,5 @@ export const rejectDocUrl:string = `${BaseUrl}rejectDoc/`;
 export const getDepUrl:string = `${BaseUrl}departments`;
 export const unListDepUrl:string = `${BaseUrl}unListDepartment/`;
 export const listDepUrl:string = `${BaseUrl}listDepartment/`;
+export const addDepUrl:string = `${BaseUrl}addDepartment`;
   

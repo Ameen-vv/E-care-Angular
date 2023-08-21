@@ -1,0 +1,35 @@
+<div class="container">
+    <h1 class="text-xl text-textBlue font-bold">Add Department</h1>
+    <div  class="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2" >
+        <div>
+          <label class="block mb-2 text-sm text-gray-400">Name</label>
+          <input name="name" [(ngModel)]="department" type="text" placeholder="Cardiology" required
+            class="block w-full px-5 py-3 mt-2 text-black-800 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-400 " />
+        </div>
+        <div>
+          <label class="block mb-2 text-sm text-gray-400">Description</label>
+          <input name="description" [(ngModel)]="description" type="text" placeholder="Cardiology" required
+            class="block w-full px-5 py-3 mt-2 text-black-800 placeholder-gray-400 bg-white border border-gray-200 rounded-md " />
+        </div>
+        <div>
+          <label class="block mb-2 text-sm text-gray-400">Common Diseases</label>
+          <input name="diseases" [(ngModel)]="diseases" type="text" placeholder="separate with ," required
+            class="block w-full px-5 py-3 mt-2 placeholder-gray-400 bg-white border border-gray-200 rounded-md " />
+        </div>
+        <div>
+          <label class="block mb-2 text-sm text-gray-400">Upload Photo</label>
+          <input type="file" name="image" (change)="setImage($event)" placeholder="MBBS,MD, etc"
+            accept="image/*"
+            class="block w-full px-5 py-3 mt-2 placeholder-gray-400 bg-white border border-gray-200 rounded-md " />
+        </div>
+        <button type="button"
+        (click)="addDepartment()"
+        [disabled]="loader"
+          class="flex mt-4 items-center  px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform rounded-md" [ngClass]="{'bg-mainColor':!loader,'bg-secColor':loader}">
+          <span *ngIf="!loader">Add</span>
+          <app-loader [size]="20" *ngIf="loader"></app-loader>
+         
+        </button>
+    </div>
+      
+</div>

@@ -17,6 +17,9 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { userReducer } from 'src/app/state/user/user.reducers';
 import { UserEffects } from 'src/app/state/user/user.effects';
+import { NgIconsModule } from '@ng-icons/core';
+import {tablerStethoscope,tablerActivityHeartbeat,tablerLogout,tablerPlus} from '@ng-icons/tabler-icons';
+import { AddDepComponent } from './pages/add-dep/add-dep.component';
 
 
 
@@ -29,14 +32,16 @@ import { UserEffects } from 'src/app/state/user/user.effects';
     AdminLogInComponent,
     DoctorTableComponent,
     NewDoctorsComponent,
-    DepartmentTableComponent
+    DepartmentTableComponent,
+    AddDepComponent
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     SharedModule,
     StoreModule.forFeature('user',userReducer),
-    EffectsModule.forFeature([UserEffects])
+    EffectsModule.forFeature([UserEffects]),
+    NgIconsModule.withIcons({tablerStethoscope,tablerActivityHeartbeat,tablerLogout,tablerPlus})
 
   ],
   providers:[

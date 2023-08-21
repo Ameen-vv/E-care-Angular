@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AdminComponent } from './admin.component';
+import { AdminNavComponent } from './shared/components/admin-nav/admin-nav.component';
+import { AdminRoutingModule } from './admin-routing.module';
 
 describe('AdminComponent', () => {
   let component: AdminComponent;
@@ -8,7 +10,8 @@ describe('AdminComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AdminComponent]
+      declarations: [AdminComponent,AdminNavComponent],
+      imports:[AdminRoutingModule]
     });
     fixture = TestBed.createComponent(AdminComponent);
     component = fixture.componentInstance;
