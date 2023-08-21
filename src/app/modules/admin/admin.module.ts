@@ -20,6 +20,7 @@ import { UserEffects } from 'src/app/state/user/user.effects';
 import { NgIconsModule } from '@ng-icons/core';
 import {tablerStethoscope,tablerActivityHeartbeat,tablerLogout,tablerPlus} from '@ng-icons/tabler-icons';
 import { AddDepComponent } from './pages/add-dep/add-dep.component';
+import { ErrorHandlerInterceptor } from './core/interceptors/errorHandler/error-handler.interceptor';
 
 
 
@@ -49,6 +50,11 @@ import { AddDepComponent } from './pages/add-dep/add-dep.component';
     {
       provide:HTTP_INTERCEPTORS,
       useClass:TokenInterceptor,
+      multi:true
+    },
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:ErrorHandlerInterceptor,
       multi:true
     }
   ]

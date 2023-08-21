@@ -7,16 +7,20 @@ import { DoctorTableComponent } from './pages/doctor-table/doctor-table.componen
 import { NewDoctorsComponent } from './pages/new-doctors/new-doctors.component';
 import { DepartmentTableComponent } from './pages/department-table/department-table.component';
 import { AddDepComponent } from './pages/add-dep/add-dep.component';
+import { authGuard } from './core/guards/authGuard/auth.guard';
+import { loginCheckGuard } from './core/guards/loginCheck/login-check.guard';
 
 
 const routes:Routes = [
   {
     path:'',
+    canActivate:[loginCheckGuard],
     component:AdminLogInComponent
   },
   {
     path:'a',
     component:AdminComponent,
+    canActivate:[authGuard],
     children:[
       {
         path:'users',
