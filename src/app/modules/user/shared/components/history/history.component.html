@@ -1,5 +1,5 @@
 <div>
-    <ng-container *ngIf="history.length === 0; else historyContent">
+    <ng-container *ngIf="history?.length === 0; else historyContent">
       <div class="flex flex-col items-center">
         <div class="h-20 w-20 text-gray-300 mb-4 mt-4">No History Icon</div>
         <p class="text-lg leading-7 text-gray-500">You have no history.</p>

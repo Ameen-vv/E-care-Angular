@@ -2,7 +2,7 @@
     <h2 class="text-xl text-textBlue font-bold mb-4 ms-4">Your appointments</h2>
   
 </div>
-<div *ngIf="appointments.length === 0; else appointmentsList">
+<div *ngIf="appointments?.length === 0; else appointmentsList">
   <div class="flex flex-col items-center">
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-20 w-20 text-gray-300 mb-4">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>

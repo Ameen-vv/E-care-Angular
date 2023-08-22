@@ -11,6 +11,6 @@ export const authGuard: CanActivateFn = (route, state) => {
   }else{
     router.navigate(['/admin']);
     toast.warning('please LogIn');
-    return false
+    return false;
   }
 };

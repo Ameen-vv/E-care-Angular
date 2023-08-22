@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AdminLogInComponent } from './admin-log-in.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 describe('AdminLogInComponent', () => {
   let component: AdminLogInComponent;
@@ -8,7 +9,8 @@ describe('AdminLogInComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AdminLogInComponent]
+      declarations: [AdminLogInComponent],
+      imports:[SharedModule]
     });
     fixture = TestBed.createComponent(AdminLogInComponent);
     component = fixture.componentInstance;

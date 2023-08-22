@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BookingPageComponent } from './booking-page.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('BookingPageComponent', () => {
   let component: BookingPageComponent;
@@ -8,7 +11,8 @@ describe('BookingPageComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [BookingPageComponent]
+      declarations: [BookingPageComponent],
+      imports:[HttpClientTestingModule,RouterTestingModule]
     });
     fixture = TestBed.createComponent(BookingPageComponent);
     component = fixture.componentInstance;
