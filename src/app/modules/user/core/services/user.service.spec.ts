@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import { UserService } from './user.service';
 import { getDoctorsUrl, userSignInUrl } from '../../shared/constants/urls';
-import { Mdoctors } from 'src/app/testing/mockDatas/mockDatas';
+import { Mdoctors } from '../../../../testing/mockDatas/mockDatas'
 import { UserSignIn } from '../models/userModels';
 
 describe('UserService', () => {
@@ -43,10 +43,14 @@ describe('UserService', () => {
       expect(response.ok).toBeTrue();
     })
     const mockReq = httpControl.expectOne(userSignInUrl);
+
     expect(mockReq.request.method).toBe('POST');
+    
     expect(mockReq.request.body).toEqual(user);
+    
     mockReq.flush({ok:true,message:'',token:''});
   })
+  
 
   afterEach(()=>{
     httpControl.verify();

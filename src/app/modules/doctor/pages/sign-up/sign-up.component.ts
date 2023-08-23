@@ -7,9 +7,10 @@ import {
   Validators,
 } from '@angular/forms';
 import { DepModel } from 'src/app/core/Models/CommonModels';
-import { DoctorService } from '../../core/services/doctor.service';
+import { DoctorService, } from '../../core/services/doctor.service';
 import { IDocSignUp, IFormDatModel } from '../../core/models/Doc.models';
 import { HotToastService } from '@ngneat/hot-toast';
+import {  Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -25,6 +26,8 @@ export class SignUpComponent implements OnInit {
     private formBuilder: FormBuilder,
     private docService: DoctorService,
     private toast: HotToastService,
+    private router:Router,
+    
   ) {
     this.doctorForm = this.formBuilder.group(
       {
@@ -108,6 +111,7 @@ export class SignUpComponent implements OnInit {
       this.docService.docSignUp(user,reader.result as string).subscribe(
         (response)=>{
           if(response.ok){
+            this.router.navigate(['/doctor/signIn']);
             this.toast.success('Registration success please wait for verification');
           }else{
             this.toast.error(response.message);

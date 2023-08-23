@@ -31,7 +31,7 @@
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/@ngneat/hot-toast/src/styles/styles.css",
+              "node_modules/@ngneat/hot-toast/src/styles/styles.css"
             ],
             "scripts": []
           },
@@ -95,13 +95,50 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss",
+              "src/styles.scss"
             ],
             "scripts": [],
             "karmaConfig": "karma.conf.js"
           }
+        },
+        "cypress-run": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "E-care-Angular:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "E-care-Angular:serve:production"
+            }
+          }
+        },
+        "cypress-open": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "watch": true,
+            "headless": false
+          }
+        },
+        "e2e": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "E-care-Angular:serve",
+            "watch": true,
+            "headless": false
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "E-care-Angular:serve:production"
+            }
+          }
         }
       }
     }
+  },
+  "cli": {
+    "schematicCollections": [
+      "@cypress/schematic",
+      "@schematics/angular"
+    ]
   }
 }

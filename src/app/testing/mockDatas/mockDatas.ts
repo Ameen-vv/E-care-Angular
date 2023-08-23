@@ -1,4 +1,4 @@
-import { DoctorModel } from "src/app/core/Models/CommonModels";
+import { DepModel, DoctorModel } from "src/app/core/Models/CommonModels";
 
 
 export const mockDoctor: DoctorModel = {
@@ -34,5 +34,29 @@ export const Mdoctors:DoctorModel[] = [
     mockDoctor,
     mockDoctor
 ]
+
+export const mockDepartments: DepModel[] = [
+  {
+    _id: '1',
+    name: 'Department A',
+    commonDiseases: ['Disease X', 'Disease Y'],
+    imageUrl: 'department-a.jpg',
+    list: true,
+    description: 'This is Department A',
+    doctors: ['Dr. John Doe', 'Dr. Jane Smith'],
+  },
+  {
+    _id: '2',
+    name: 'Department B',
+    commonDiseases: ['Disease Z', 'Disease W'],
+    imageUrl: 'department-b.jpg',
+    list: true,
+    description: 'This is Department B',
+    doctors: ['Dr. Mark Johnson', 'Dr. Emily Brown'],
+  },
+  // Add more departments as needed
+];
+
+
 
 

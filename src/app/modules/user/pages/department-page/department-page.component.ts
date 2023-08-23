@@ -21,7 +21,7 @@ export class DepartmentPageComponent implements OnInit,OnDestroy {
   }
 
   ngOnDestroy(): void {
-      this.getDepartment.unsubscribe();
+      this.getDepartment?.unsubscribe();
   }
 
   getDeps(text: string) {

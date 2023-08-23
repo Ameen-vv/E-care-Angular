@@ -4,7 +4,7 @@
            {{title}}
         </h2>
         <ng-container *ngIf="formType !== 'otp'">
-        <form [formGroup]="formTemplate" (ngSubmit)="onSubmit()" class="text-textBlue">
+        <form [formGroup]="formTemplate" (ngSubmit)="onSubmit()" class="text-textBlue" id="authForm">
                 <div *ngIf="formType === 'signUp'">
                     <label for="username" class="text-textBlue text-sm">Full Name</label>
                     <input id="username" name="username" type="text" autocomplete="username" required

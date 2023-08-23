@@ -16,7 +16,7 @@ export class TokenInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
     
-    const token: string | null = localStorage.getItem('token');
+    const token: string = localStorage.getItem('token') as string;
 
     if (token) {
       request = request.clone({
