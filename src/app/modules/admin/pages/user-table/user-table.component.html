@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="w-full p-2">
+    <h1 class="text-textBlue font-bold text-xl">Users</h1>
+  </div>
+  <app-data-table>
+    <ng-container header-cell>
+      <th class="px-4 py-2 text-left font-semibold">no</th>
+      <th class="px-4 py-2 text-left font-semibold">Full Name</th>
+      <th class="px-4 py-2 text-left font-semibold">Email</th>
+      <th class="px-4 py-2 text-left font-semibold">Phone</th>
+      <th class="px-4 py-2 text-left font-semibold">Actions</th>
+    </ng-container>
+    <ng-container data-row>
+      <tr class="hover:bg-gray-100" *ngFor="let user of users$ | async; let i = index">
+        <td class="px-4 py-3">{{ i + 1 }}</td>
+        <td class="px-4 py-3">{{ user.fullName }}</td>
+        <td class="px-4 py-3">{{ user.email }}</td>
+        <td class="px-4 py-3">{{ user.phone }}</td>
+
+        <td>
+          <button
+            *ngIf="!user.block"
+            class="bg-red-600 p-1 px-3 rounded text-white hover:bg-red-700"
+            (click)="blockUser(user._id)"
+          >
+            block
+          </button>
+          <button
+            *ngIf="user.block"
+            class="bg-green-600 p-1 px-3 rounded text-white hover:bg-green-700"
+            (click)="unBlockUser(user._id)"
+          >
+            unblock
+          </button>
+        </td>
+      </tr>
+    </ng-container>
+  </app-data-table>
+</div>

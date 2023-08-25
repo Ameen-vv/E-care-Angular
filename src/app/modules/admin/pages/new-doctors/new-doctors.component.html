@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="w-full p-2 text-textBlue text-xl font-bold">
+        <h1>New Doctors</h1>
+    </div>
+    <app-data-table>
+        <ng-container header-cell>
+            <th class="px-4 py-2 text-left font-semibold">No</th>
+            <th class="px-4 py-2 text-left font-semibold">Full Name</th>
+            <th class="px-4 py-2 text-left font-semibold">Email</th>
+            <th class="px-4 py-2 text-left font-semibold">Phone</th>
+            <th class="px-4 py-2 text-left font-semibold">Department</th>
+            <th class="px-4 py-2 text-left font-semibold">Licence</th>
+            <th class="px-4 py-2 text-left font-semibold">Actions</th>
+        </ng-container>
+        <ng-container data-row>
+            <tr class="hover:bg-gray-100" *ngFor="let doctor of doctors; let i = index">
+                <td class="px-4 py-2">{{i + 1}}</td>
+                <td class="px-4 py-2">{{doctor.fullName}}</td>
+                <td class="px-4 py-2">{{doctor.email}}</td>
+                <td class="px-4 py-2">{{doctor.phone}}</td>
+                <td class="px-4 py-2">{{doctor.department.name}}</td>
+                <td class="px-4 py-2 ">
+                    <a [href]="doctor.licenseUrl" target="_blank">
+                        <img [src]="doctor.licenseUrl" alt="" class="h-10 w-10 cursor-pointer">
+                    </a>
+                </td>
+                <td class="px-4 py-2">
+                    <button
+                    class="bg-green-600 p-1 px-3 rounded text-white hover:bg-green-700 me-2"
+                    (click)="approveDoc(doctor._id)"
+                  >
+                    approve
+                  </button>
+                  <button
+                    class="bg-red-600 p-1 px-3 rounded text-white hover:bg-red-700"
+                    (click)="rejectDoc(doctor._id)"
+                  >
+                    reject
+                  </button>
+                </td>
+            </tr>
+        </ng-container>
+    </app-data-table>
+</div>

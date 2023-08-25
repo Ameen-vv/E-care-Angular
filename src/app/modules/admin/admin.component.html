@@ -1,1 +1,5 @@
-<p>admin works!</p>
+<app-admin-nav [page]="page" (onNavigate)="onNavigate($event)">
+  <div class="grow">
+      <router-outlet></router-outlet>
+  </div>  
+</app-admin-nav>

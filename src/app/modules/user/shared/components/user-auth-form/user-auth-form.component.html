@@ -1,0 +1,115 @@
+<div class="min-h-screen flex  justify-center bg-white pt-2">
+    <div class="max-w-md w-full p-6  rounded-lg shadow-xl md:mt-12 h-1/2 bg-white">
+        <h2 class="mb-6 text-center text-3xl font-bold text-textBlue font-dance">
+           {{title}}
+        </h2>
+        <ng-container *ngIf="formType !== 'otp'">
+        <form [formGroup]="formTemplate" (ngSubmit)="onSubmit()" class="text-textBlue" id="authForm">
+                <div *ngIf="formType === 'signUp'">
+                    <label for="username" class="text-textBlue text-sm">Full Name</label>
+                    <input id="username" name="username" type="text" autocomplete="username" required
+                        class="w-full px-4 py-2 mt-2 text-gray-900 bg-gray-50 border rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        formControlName="name">
+                    <div *ngIf="formTemplate.get('name')?.invalid && formTemplate.get('name')?.touched"
+                        class="text-sm text-red-600">
+                        Full Name is required.
+                    </div>
+                </div>
+                <div>
+                    <label for="email" class="text-textBlue text-sm">Email address</label>
+                    <input id="email" name="email" type="email" autocomplete="email" required
+                        class="w-full px-4 py-2 mt-2 text-gray-900 bg-gray-50 border rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        formControlName="email">
+                    <div *ngIf="formTemplate.get('email')?.invalid && formTemplate.get('email')?.touched"
+                        class="text-sm text-red-600">
+                        Email is required and must be a valid email address.
+                    </div>
+                </div>
+                <div *ngIf="formType === 'signUp'">
+                    <label for="email" class=" text-sm">Phone</label>
+                    <input id="phone" name="phone" type="text" autocomplete="phone" required
+                        class="w-full px-4 py-2 mt-2 text-gray-900 bg-gray-50 border rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        formControlName="phone">
+                    <div *ngIf="formTemplate.get('phone')?.invalid && formTemplate.get('phone')?.touched"
+                        class="text-sm text-red-600">
+                        Enter Valid Phone
+                    </div>
+                </div>
+                <div *ngIf="formType === 'signUp'">
+                    <label for="email" class=" text-sm">DOB</label>
+                    <input id="dob" name="dob" type="date" autocomplete="dob" required
+                        class="w-full px-4 py-2 mt-2 text-gray-900 bg-gray-50 border rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        formControlName="dob">
+                    <div *ngIf="formTemplate.get('dob')?.hasError('required') && formTemplate.get('dob')?.touched"
+                        class="text-sm text-red-600">
+                        Enter Valid Date
+                    </div>
+                    <div *ngIf="formTemplate.get('dob')?.hasError('minAge')" class="text-sm text-red-600">
+                        User should be at least 15 years old.
+                      </div>
+                </div>
+                <div *ngIf="formType === 'signUp'">
+                    <label for="email" class=" text-sm">Address</label>
+                    <input id="address" name="address" type="text" autocomplete="phone" required
+                        class="w-full px-4 py-2 mt-2 text-gray-900 bg-gray-50 border rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        formControlName="address">
+                    <div *ngIf="formTemplate.get('address')?.invalid && formTemplate.get('address')?.touched"
+                        class="text-sm text-red-600">
+                        Enter Valid Address
+                    </div>
+                </div>
+                <div>
+                    <label for="password" class=" text-sm">Password</label>
+                    <input id="password" name="password" type="password" autocomplete="current-password" required
+                        class="w-full px-4 py-2 mt-2 text-gray-900 bg-gray-50 border rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        formControlName="password">
+                    <div *ngIf="formTemplate.get('password')?.invalid && formTemplate.get('password')?.touched"
+                        class="text-sm text-red-600">
+                        Password is required.
+                    </div>
+                </div>
+                <div *ngIf="formType === 'signUp'">
+                    <label for="confirm-password" class="text-sm">Confirm Password</label>
+                    <input id="confirm-password" name="confirmPass" type="password" autocomplete="current-password" required
+                        class="w-full px-4 py-2 mt-2 text-gray-900 bg-gray-50 border rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+                        formControlName="confirmPass">
+                    <div *ngIf="formTemplate.get('confirmPass')?.invalid && formTemplate.get('confirmPass')?.touched"
+                        class="text-sm text-red-600">
+                        Confirm Password is required.
+                    </div>
+                </div>
+                <div>
+                    <button type="submit"
+                        class="w-full py-3 text-sm font-semibold text-white flex justify-center items-center rounded-md hover:bg-secColor focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mt-4"
+                        [ngClass]="{ 'bg-mainColor': !loader, 'bg-mainColor-400': loader }">
+                        <span *ngIf="loader">
+                            <app-loader [size]="10"></app-loader>
+                        </span>
+                        <span *ngIf="!loader">Submit</span>
+                    </button>
+                </div>
+            </form>
+        </ng-container>
+        <ng-container *ngIf="formType === 'otp'">
+            <div>
+                <label for="confirm-password" class="text-sm">Otp</label>
+                <input id="otp" name="otp" type="text" 
+                    class="w-full px-4 py-2 mt-2 text-gray-900 bg-gray-50 border rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" [(ngModel)]="otp">
+            </div>
+            <div>
+                <button type="button"
+                    class="w-full py-3 text-sm font-semibold text-white flex justify-center items-center rounded-md hover:bg-secColor focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 mt-4"
+                    [ngClass]="{ 'bg-mainColor': !loader, 'bg-mainColor-400': loader }" (click)="onOtpSubmit()">
+                    <span *ngIf="loader">
+                        <app-loader [size]="10"></app-loader>
+                    </span>
+                    <span *ngIf="!loader">Verify Otp</span>
+                </button>
+            </div>
+            <div class="flex w-full justify-center mt-3">
+                <p class="text-textBlue">resend otp in <a *ngIf="otpTimer > 0">{{otpTimer}}</a></p>
+                <a class="ms-2 text-secColor font-medium cursor-pointer" *ngIf="otpTimer <= 0" (click)="onOtpResend()" >Resend</a>
+            </div>
+        </ng-container>
+    </div>
+</div>

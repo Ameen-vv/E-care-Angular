@@ -1,0 +1,151 @@
+<form
+  (ngSubmit)="handleSubmit()"
+  #timeFormRef="ngForm"
+  class="w-full mx-auto"
+>
+  <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full">
+    <h2 class="text-2xl font-bold mb-6 text-textBlue">Add Timing</h2>
+    <div class="flex flex-wrap -mx-2 mb-4">
+      <div class="w-full md:w-1/2 px-2">
+        <label
+          class="block text-gray-700 font-bold mb-2 mt-2"
+          for="day_of_week"
+        >
+          Day of Week:
+        </label>
+        <div class="relative">
+          <select
+            required
+            id="day_of_week"
+            name="day_of_week"
+            [(ngModel)]="day"
+            class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+          >
+            <option value="">Please select</option>
+            <option value="monday">Monday</option>
+            <option value="tuesday">Tuesday</option>
+            <option value="wednesday">Wednesday</option>
+            <option value="thursday">Thursday</option>
+            <option value="friday">Friday</option>
+            <option value="saturday">Saturday</option>
+            <option value="sunday">Sunday</option>
+          </select>
+        </div>
+      </div>
+      <div class="w-full md:w-1/2 px-2">
+        <label class="block text-gray-700 font-bold mb-2 mt-2" for="start_time">
+          Start Time:
+        </label>
+        <div class="relative">
+          <select
+            id="start_time"
+            name="start_time"
+            required
+            (ngModelChange)="handleStartTimeChange($event)"
+            [(ngModel)]="startTime"
+            class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+          >
+            <option value="" disabled >Please select</option>
+            <option value="07:00 AM">07:00 AM</option>
+            <option value="08:00 AM">08:00 AM</option>
+            <option value="09:00 AM">09:00 AM</option>
+            <option value="10:00 AM">10:00 AM</option>
+            <option value="11:00 AM">11:00 AM</option>
+            <option value="12:00 PM">12:00 PM</option>
+            <option value="01:00 PM">01:00 PM</option>
+            <option value="02:00 PM">02:00 PM</option>
+            <option value="03:00 PM">03:00 PM</option>
+            <option value="04:00 PM">04:00 PM</option>
+            <!-- ... Other start times ... -->
+          </select>
+        </div>
+      </div>
+
+      <div class="w-full md:w-1/2 px-2">
+        <label class="block text-gray-700 font-bold mb-2 mt-2" for="end_time">
+          End Time:
+        </label>
+        <div class="relative">
+          <select
+            required
+            id="end_time"
+            name="end_time"
+            (ngModelChange)="handleEndTimeChange($event)"
+            [(ngModel)]="endTime"
+            class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+          >
+            <option value="" disabled  >Please select</option>
+            <option value="07:00 AM">07:00 AM</option>
+            <option value="08:00 AM">08:00 AM</option>
+            <option value="09:00 AM">09:00 AM</option>
+            <option value="10:00 AM">10:00 AM</option>
+            <option value="11:00 AM">11:00 AM</option>
+            <option value="12:00 PM">12:00 PM</option>
+            <option value="01:00 PM">01:00 PM</option>
+            <option value="02:00 PM">02:00 PM</option>
+            <option value="03:00 PM">03:00 PM</option>
+            <option value="04:00 PM">04:00 PM</option>
+            <!-- ... Other end times ... -->
+          </select>
+        </div>
+      </div>
+
+      <div class="w-full md:w-1/2 px-2">
+        <label class="block text-gray-700 font-bold mb-2 mt-2" for="price">
+          Slots
+        </label>
+        <input
+          required
+          id="price"
+          name="price"
+          type="number"
+          step="0.01"
+          placeholder="Enter slots"
+          [(ngModel)]="slots"
+          class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+        />
+      </div>
+    </div>
+    <div class="flex items-center justify-center">
+      <button
+        type="submit"
+        class="bg-mainColor hover:bg-secColor text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+      >
+        Submit
+      </button>
+    </div>
+  </div>
+</form>
+<div class="border border-gray-400 rounded-lg px-6 py-4">
+  <h3 class="text-lg font-bold mb-4">Availability</h3>
+  <ng-container *ngIf="timings.length === 0; else availabilityContent">
+    <p>No availability found.</p>
+  </ng-container>
+  <ng-template #availabilityContent>
+    <ul class="list-disc pl-4">
+      <li *ngFor="let time of timings; let index = index" class="mb-3 bg-gray-100 p-3">
+        <div
+          class="flex  flex-col md:flex-row justify-between items-start"
+        >
+          <div class="flex flex-col text-start">
+            <p class="text-lg font-semibold mb-2 sm:mr-4">
+                <span class="text-gray-700 mr-2">{{ time?.day }}:</span>
+                <span>{{ time?.startTime }} - {{ time?.endTime }}</span>
+              </p>
+             
+                <p class="text-gray-700">
+                  <span class="font-semibold mr-2">Slots:</span>
+                  {{ time.slots }}
+                </p>
+          </div>
+          <button
+            class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-lg ms-auto self-center"
+            (click)="deleteSlot(index)"
+          >
+            Delete
+          </button>
+        </div>
+      </li>
+    </ul>
+  </ng-template>
+</div>

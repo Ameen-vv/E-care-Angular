@@ -1,0 +1,16 @@
+<div
+  class="min-h-screen flex justify-center items-center bg-gray-100 p-5 bg-bgImage bg-cover"
+>
+  <div class="max-w-md w-full p-6 rounded-lg shadow-xl bg-white">
+    <h2 class="text-2xl font-semibold mb-4 text-center text-textBlue">
+      Doctor Sign Up
+    </h2>
+    <app-doctor-auth-form
+      formType="signUp"
+      [doctorForm]="doctorForm"
+      [departments]="departments"
+      (submitForm)="signUp($event)"
+      [loader]="loader"
+    ></app-doctor-auth-form>
+  </div>
+</div>

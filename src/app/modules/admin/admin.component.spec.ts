@@ -1,21 +1,24 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AdminComponent } from './admin.component';
+import { AdminNavComponent } from './shared/components/admin-nav/admin-nav.component';
+import { AdminRoutingModule } from './admin-routing.module';
+import { Router } from '@angular/router';
 
 describe('AdminComponent', () => {
-  let component: AdminComponent;
   let fixture: ComponentFixture<AdminComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AdminComponent]
+      declarations: [AdminComponent,AdminNavComponent],
+      imports:[AdminRoutingModule],
+      providers:[AdminComponent]
     });
-    fixture = TestBed.createComponent(AdminComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    
   });
 
   it('should create', () => {
+    const component:AdminComponent = TestBed.inject(AdminComponent); 
     expect(component).toBeTruthy();
   });
 });

@@ -1,0 +1,9 @@
+<app-user-auth-form
+  [formTemplate]="authForm"
+  [loader]="loader"
+  [title]="authType === 'otp' ? 'Otp' : 'SignUp'"
+  [formType]="authType"
+  (formSubmit)="getOtp($event)"
+  (verifyOtp)="verifyOtpAndSignUp($event)"
+  (resendOtp)="resendOtp()"
+></app-user-auth-form>
