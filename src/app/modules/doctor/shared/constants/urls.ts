@@ -1,4 +1,4 @@
-const BaseUrl:string = 'http://localhost:2000/doctor/';
+const BaseUrl:string = 'https://ecare-server-final.onrender.com/doctor/';
 
 export const getDepUrl:string = `${BaseUrl}getDepartments`;
 export const docSignUpUrl:string = `${BaseUrl}signUp`;

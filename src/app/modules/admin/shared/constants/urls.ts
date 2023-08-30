@@ -1,4 +1,4 @@
-const BaseUrl:string = 'http://localhost:2000/admin/';
+const BaseUrl:string = 'https://ecare-server-final.onrender.com/admin/';
 
 export const adminLogInUrl:string = `${BaseUrl}logIn`;
 export const getUsersUrl:string = `${BaseUrl}getUsers`;

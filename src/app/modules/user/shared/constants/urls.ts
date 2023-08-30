@@ -1,4 +1,4 @@
-const BaseUrl:string = 'http://localhost:2000/';
+const BaseUrl:string = 'https://ecare-server-final.onrender.com/';
 
 export const getOtpUrl:string = `${BaseUrl}getOtp`;
 export const verifyOtpUrl:string = `${BaseUrl}signUp`;
