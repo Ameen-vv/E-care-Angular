@@ -7,7 +7,7 @@
         <div class="w-full">
             <app-search-bar (searchChange)="onSearch($event)" ></app-search-bar>
         </div>
-        <div class="w-full text-center mt-7" *ngIf="doctors.length === 0">
+        <div class="w-full text-center mt-7" *ngIf="doctors.length === 0 && !loader">
             <h1  class="text-2xl font-medium text-textBlue">no doctors available</h1>
           </div>
         <div *ngIf="loader" class="w-full h-[70vh] flex justify-center items-center">
