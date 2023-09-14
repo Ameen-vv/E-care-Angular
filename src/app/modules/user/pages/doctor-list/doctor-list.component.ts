@@ -32,11 +32,13 @@ export class DoctorListComponent implements OnInit,OnDestroy {
   }
 
   getDoctors(searchText: string) {
+    this.loader = true;
     this.getDocSub = this.userService
       .getDoctors(this.depId, searchText)
       .subscribe((response) => {
         this.doctors = response.data;
-      });
+        this.loader = false;
+      },()=>this.loader = false);
   }
 
   onSearch(text: string) {

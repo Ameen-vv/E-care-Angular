@@ -12,13 +12,17 @@ export class WalletComponent implements OnInit,OnDestroy {
   
    wallet!:WalletModel;
    getWalletSub!:Subscription;
+   loader:boolean = true;
    private userService = inject(UserService);
   
   ngOnInit(): void {
+    this.loader = true;
       this.getWalletSub = this.userService.getWallet().subscribe(
         (response)=>{
           this.wallet = response.data;
-        }
+          this.loader = false;
+        },
+        ()=>this.loader = false
         )
   }
 
